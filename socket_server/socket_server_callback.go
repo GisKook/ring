@@ -2,7 +2,7 @@ package socket_server
 
 import (
 	"github.com/gansidui/gotcp"
-	"github.com/giskook/bed2/socket_server/protocol"
+	"github.com/giskook/ring/socket_server/protocol"
 	"log"
 )
 

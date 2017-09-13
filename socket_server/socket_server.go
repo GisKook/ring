@@ -2,8 +2,8 @@ package socket_server
 
 import (
 	"github.com/gansidui/gotcp"
-	"github.com/giskook/bed2/base"
-	"github.com/giskook/bed2/conf"
+	"github.com/giskook/ring/base"
+	"github.com/giskook/ring/conf"
 	"log"
 	"net"
 	"time"

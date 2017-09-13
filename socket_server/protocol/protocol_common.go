@@ -3,7 +3,7 @@ package protocol
 import (
 	"bytes"
 	"encoding/binary"
-	"github.com/giskook/bed2/base"
+	"github.com/giskook/ring/base"
 	"strconv"
 	"strings"
 )
