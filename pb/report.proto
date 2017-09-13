@@ -1,0 +1,15 @@
+syntax="proto3";
+package Carrier;
+
+import "base.proto";
+import "report_login.proto";
+
+message Report{ 
+	Header header = 1;
+	enum Protocol{
+		UNKNOWN = 0;
+		LOGIN = 1;
+	}
+	Protocol protocol = 2;
+	ReportLogin login = 3;
+}

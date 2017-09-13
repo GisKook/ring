@@ -1,0 +1,11 @@
+syntax="proto3";
+package Carrier;
+
+message ReportLogin { 
+	// imei
+	string id = 2;
+	// 设备类型
+	string device_type = 3;
+	// 协议版本
+	string protocol = 4;
+}

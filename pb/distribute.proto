@@ -1,0 +1,13 @@
+syntax="proto3";
+package Carrier;
+
+import "base.proto";
+
+message Distribute{ 
+	Header header = 1;
+	enum Protocol{
+		UNKNOWN = 0;
+		LOGRT = 1;
+	}
+	Protocol protocol = 2;
+}
