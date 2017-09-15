@@ -5,42 +5,27 @@ import (
 	"os"
 )
 
-type ProducerBase struct {
-	Addr   string
-	Topic  string
-	Number int
-}
-
-type Producer struct {
-	Manage   *ProducerBase
-	Location *ProducerBase
-	Control  *ProducerBase
-}
-
-type ConsumerBase struct {
-	Addr    string
+type NsqConsumerTopic struct {
 	Topic   string
 	Channel string
 	Number  int
 }
 
-type Consumer struct {
-	Manage   *ConsumerBase
-	Location *ConsumerBase
-	Control  *ConsumerBase
-}
-
 type Nsq struct {
-	Producer *Producer
-	Consumer *Consumer
+	Addr           string
+	ProducerCount  int
+	TopicPManage   string
+	TopicPControl  string
+	TopicPLocation string
+	TopicConsumer  *NsqConsumerTopic
 }
 
 type TcpServer struct {
 	BindPort          string
-	ReadLimit         uint16
-	WriteLimit        uint16
-	ConnTimeout       uint16
-	ConnCheckInterval uint16
+	ReadLimit         int
+	WriteLimit        int
+	ConnTimeout       int
+	ConnCheckInterval int
 }
 
 type Conf struct {

@@ -2,13 +2,11 @@ package protocol
 
 import (
 	"bytes"
-	"encoding/binary"
-	"github.com/giskook/ring/base"
 	"strconv"
 	"strings"
 )
 
-type Protocol int32
+type Protocol uint32
 
 const (
 	PROTOCOL_MIN_LENGTH int    = 26
@@ -28,7 +26,7 @@ var PROTOCOL = map[string]Protocol{
 }
 
 func Parse(buffer string) []string {
-	return strings.Split(buffer)
+	return strings.Split(buffer, PROTOCOL_SEP)
 }
 
 func GetInnerID(id string) uint64 {
@@ -44,7 +42,7 @@ func CheckProtocol(buffer *bytes.Buffer) (Protocol, []string) {
 		return PROTOCOL_ILLEGAL, nil
 	}
 	p := string(buffer.Bytes())
-	if p[0] != PROTOCOL_START_FLAG {
+	if string(p[0]) != PROTOCOL_START_FLAG {
 		buffer.ReadByte()
 		cmd, values = CheckProtocol(buffer)
 	} else if bufferlen >= PROTOCOL_MIN_LENGTH {
@@ -52,8 +50,8 @@ func CheckProtocol(buffer *bytes.Buffer) (Protocol, []string) {
 		if end_idx == -1 {
 			return PROTOCOL_HALF_PACK, nil
 		} else {
-			buf, err := buffer.ReadString('\n')
-			values = strings.Splite(buf, PROTOCOL_SEP)
+			buf, _ := buffer.ReadString('\n')
+			values = strings.Split(buf, PROTOCOL_SEP)
 			return PROTOCOL[values[1]], values
 		}
 	} else {

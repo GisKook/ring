@@ -14,7 +14,8 @@ type SocketServer struct {
 	srv       *gotcp.Server
 	cm        *ConnMgr
 	SocketIn  chan *base.SocketData
-	SocketOut chan *base.SocketData
+	SocketOut chan []byte
+	exit      chan struct{}
 }
 
 func NewSocketServer(conf *conf.Conf) *SocketServer {
@@ -22,7 +23,8 @@ func NewSocketServer(conf *conf.Conf) *SocketServer {
 		conf:      conf,
 		cm:        NewConnMgr(),
 		SocketIn:  make(chan *base.SocketData),
-		SocketOut: make(chan *base.SocketData),
+		SocketOut: make(chan []byte),
+		exit:      make(chan struct{}),
 	}
 }
 
@@ -44,7 +46,7 @@ func (ss *SocketServer) Start() error {
 	ss.srv = gotcp.NewServer(config, ss, ss)
 
 	go ss.srv.Start(listener, time.Second)
-	log.Println("socket Listening:", listener.Addr())
+	log.Println("socket listening:", listener.Addr())
 
 	return nil
 }
@@ -55,11 +57,13 @@ func (ss *SocketServer) Send(id uint64, p gotcp.Packet) error {
 		return c.Send(p)
 	}
 
-	return base.ErrBedOffline
+	return base.ErrTerminalOffline
 
 }
 
-func (ss *SocketServer) Close() {
-	close(ss.SocketOutResult)
+func (ss *SocketServer) Stop() {
+	close(ss.SocketOut)
+	close(ss.SocketIn)
 	ss.srv.Stop()
+	close(ss.exit)
 }

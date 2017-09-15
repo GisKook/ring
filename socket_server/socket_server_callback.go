@@ -8,8 +8,8 @@ import (
 
 func (ss *SocketServer) OnConnect(c *gotcp.Conn) bool {
 	connection := NewConnection(c, &ConnConf{
-		read_limit:  ss.conf.ReadLimit,
-		write_limit: ss.conf.WriteLimit,
+		read_limit:  ss.conf.TcpServer.ReadLimit,
+		write_limit: ss.conf.TcpServer.WriteLimit,
 	})
 
 	c.PutExtraData(connection)
