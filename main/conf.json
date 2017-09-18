@@ -18,6 +18,7 @@
 		"ReadLimit":300,
 		"WriteLimit":300,
 		"ConnTimeout":10,
-		"ConnCheckInterval":10
+		"ConnCheckInterval":10,
+		"WorkerNum":10
 	}
 }

@@ -8,21 +8,28 @@ import (
 )
 
 func (ss *SocketServer) consumer_worker(c chan []byte) {
+	ss.wait_exit.Add(1)
 	go func() {
 		for {
 			select {
 			case <-ss.exit:
+				ss.wait_exit.Done()
 				return
 			case p := <-ss.SocketOut:
 				distribute := &Carrier.Distribute{}
 				err := proto.Unmarshal(p, distribute)
 				log.Printf("<IN NSQ> %x %s \n", p, string(p))
 				if err != nil {
-					log.Println("<ERR> %x unmarshal error", p)
+					log.Println("<ERR> %x unmarshal error\n", p)
 				} else {
+					var err error
 					switch distribute.Protocol {
 					case Carrier.Distribute_LOGRT:
-						ss.Send(protocol.ParseDistributeLogRt(distribute))
+						err = ss.Send(protocol.ParseDistributeLogRt(distribute))
+					}
+
+					if err != nil {
+						log.Printf("%x %s\n", p, err.Error())
 					}
 				}
 

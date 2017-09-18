@@ -26,6 +26,7 @@ type TcpServer struct {
 	WriteLimit        int
 	ConnTimeout       int
 	ConnCheckInterval int
+	WorkerNum         int
 }
 
 type Conf struct {
