@@ -18,11 +18,13 @@ const (
 	PROTOCOL_HALF_PACK Protocol = 0xfffffffe
 	PROTOCOL_UNKNOWN   Protocol = 0
 
-	PROTOCOL_LOGIN Protocol = 1
+	PROTOCOL_REPORT_LOGIN Protocol = 1
+
+	PROTOCOL_DISTRIBUTE_LOGRT string = "PLOGRT"
 )
 
 var PROTOCOL = map[string]Protocol{
-	"LOGIN": PROTOCOL_LOGIN,
+	"LOGIN": PROTOCOL_REPORT_LOGIN,
 }
 
 func Parse(buffer string) []string {
@@ -32,6 +34,16 @@ func Parse(buffer string) []string {
 func GetInnerID(id string) uint64 {
 	_id, _ := strconv.ParseUint(id, 10, 64)
 	return _id
+}
+
+func write_header(protocol_id string, imei string) string {
+	cmd := PROTOCOL_START_FLAG + PROTOCOL_SEP
+	cmd += protocol_id
+	cmd += PROTOCOL_SEP
+	cmd += imei
+	cmd += PROTOCOL_SEP
+
+	return cmd
 }
 
 func CheckProtocol(buffer *bytes.Buffer) (Protocol, []string) {

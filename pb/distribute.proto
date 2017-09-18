@@ -2,6 +2,7 @@ syntax="proto3";
 package Carrier;
 
 import "base.proto";
+import "distribute_logrt.proto";
 
 message Distribute{ 
 	Header header = 1;
@@ -10,4 +11,5 @@ message Distribute{
 		LOGRT = 1;
 	}
 	Protocol protocol = 2;
+	DistributeLogRt logrt = 3;
 }

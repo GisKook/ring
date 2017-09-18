@@ -36,7 +36,7 @@ func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 			return true
 		case protocol.PROTOCOL_ILLEGAL:
 			return true
-		case protocol.PROTOCOL_LOGIN:
+		case protocol.PROTOCOL_REPORT_LOGIN:
 			ss.eh_report_login(values, connection)
 		}
 	}

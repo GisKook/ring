@@ -7,12 +7,14 @@ Package Carrier is a generated protocol buffer package.
 
 It is generated from these files:
 	base.proto
+	distribute_logrt.proto
 	distribute.proto
 	report_login.proto
 	report.proto
 
 It has these top-level messages:
 	Header
+	DistributeLogRt
 	Distribute
 	ReportLogin
 	Report

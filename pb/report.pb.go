@@ -32,7 +32,7 @@ var Report_Protocol_value = map[string]int32{
 func (x Report_Protocol) String() string {
 	return proto.EnumName(Report_Protocol_name, int32(x))
 }
-func (Report_Protocol) EnumDescriptor() ([]byte, []int) { return fileDescriptor3, []int{0, 0} }
+func (Report_Protocol) EnumDescriptor() ([]byte, []int) { return fileDescriptor4, []int{0, 0} }
 
 type Report struct {
 	Header   *Header         `protobuf:"bytes,1,opt,name=header" json:"header,omitempty"`
@@ -43,7 +43,7 @@ type Report struct {
 func (m *Report) Reset()                    { *m = Report{} }
 func (m *Report) String() string            { return proto.CompactTextString(m) }
 func (*Report) ProtoMessage()               {}
-func (*Report) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
+func (*Report) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 func (m *Report) GetHeader() *Header {
 	if m != nil {
@@ -71,9 +71,9 @@ func init() {
 	proto.RegisterEnum("Carrier.Report_Protocol", Report_Protocol_name, Report_Protocol_value)
 }
 
-func init() { proto.RegisterFile("report.proto", fileDescriptor3) }
+func init() { proto.RegisterFile("report.proto", fileDescriptor4) }
 
-var fileDescriptor3 = []byte{
+var fileDescriptor4 = []byte{
 	// 175 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x29, 0x4a, 0x2d, 0xc8,
 	0x2f, 0x2a, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x77, 0x4e, 0x2c, 0x2a, 0xca, 0x4c,
