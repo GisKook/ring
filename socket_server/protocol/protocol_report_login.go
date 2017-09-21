@@ -23,7 +23,7 @@ func (p *ReportLoginPkg) Serialize() []byte {
 		},
 		Protocol: Carrier.Report_LOGIN,
 		Login: &Carrier.ReportLogin{
-			Id:         p.ID,
+			Imei:       p.ID,
 			DeviceType: p.DeviceType,
 			Protocol:   p.Protocol,
 		},
@@ -37,9 +37,9 @@ func (p *ReportLoginPkg) Serialize() []byte {
 func ParseReportLogin(p []string, h *base.Header) *ReportLoginPkg {
 	return &ReportLoginPkg{
 		Header:     h,
-		InnerID:    GetInnerID(p[1]),
-		ID:         p[1],
-		DeviceType: p[2],
-		Protocol:   p[3],
+		InnerID:    GetInnerID(p[2]),
+		ID:         p[3],
+		DeviceType: p[4],
+		Protocol:   p[5],
 	}
 }

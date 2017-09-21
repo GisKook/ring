@@ -9,6 +9,7 @@ It is generated from these files:
 	base.proto
 	distribute_logrt.proto
 	distribute.proto
+	report_location.proto
 	report_login.proto
 	report.proto
 
@@ -16,6 +17,11 @@ It has these top-level messages:
 	Header
 	DistributeLogRt
 	Distribute
+	WifiCell
+	StationCell
+	LocationExtra
+	LocationInfo
+	ReportLocation
 	ReportLogin
 	Report
 */

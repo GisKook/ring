@@ -3,13 +3,18 @@ package Carrier;
 
 import "base.proto";
 import "report_login.proto";
+import "report_location.proto";
 
 message Report{ 
 	Header header = 1;
 	enum Protocol{
-		UNKNOWN = 0;
-		LOGIN = 1;
+		UNKNOWN       = 0;
+		LOGIN         = 1;
+		LOCATION      = 2;
+		LOCATION_INFO = 3;
 	}
-	Protocol protocol = 2;
-	ReportLogin login = 3;
+	Protocol protocol          = 2;
+	ReportLogin login          = 3;
+	ReportLocation location    = 4;
+	LocationInfo location_info = 5;
 }

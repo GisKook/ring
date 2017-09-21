@@ -3,7 +3,7 @@ package Carrier;
 
 message ReportLogin { 
 	// imei
-	string id = 1;
+	string imei = 1;
 	// 设备类型
 	string device_type = 2;
 	// 协议版本
