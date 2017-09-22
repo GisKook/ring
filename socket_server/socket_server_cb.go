@@ -57,3 +57,17 @@ func (ss *SocketServer) eh_report_lowp(p []string) {
 	}
 	ss.Send(protocol.GenPackPkg(lowp.Imei, lowp.Time, protocol.PROTOCOL_REPORT_LOWP_FLAG))
 }
+
+func (ss *SocketServer) eh_report_receipt(p []string) {
+	header := &base.Header{
+		AppID: ss.conf.AppID,
+		From:  ss.conf.UUID,
+		To:    ss.conf.Nsq.TopicPControl,
+	}
+	receipt := protocol.ParseReportReceipt(p, header)
+
+	ss.SocketIn <- &base.SocketData{
+		Header: header,
+		Data:   receipt.Serialize(),
+	}
+}

@@ -42,6 +42,8 @@ func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 			ss.eh_report_location(values)
 		case protocol.PROTOCOL_REPORT_LOWP:
 			ss.eh_report_lowp(values)
+		case protocol.PROTOCOL_REPORT_RECEIPT:
+			ss.eh_report_receipt(values)
 		}
 	}
 }

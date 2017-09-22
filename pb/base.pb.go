@@ -14,6 +14,7 @@ It is generated from these files:
 	report_login.proto
 	report_lowp.proto
 	report.proto
+	report_receipt.proto
 
 It has these top-level messages:
 	Header
@@ -28,6 +29,7 @@ It has these top-level messages:
 	ReportLogin
 	ReportLowp
 	Report
+	ReportReceipt
 */
 package Carrier
 

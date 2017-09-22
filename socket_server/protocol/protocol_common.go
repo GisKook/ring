@@ -20,6 +20,7 @@ const (
 	PROTOCOL_REPORT_LOGIN    Protocol = 1
 	PROTOCOL_REPORT_LOCATION Protocol = 2
 	PROTOCOL_REPORT_LOWP     Protocol = 4
+	PROTOCOL_REPORT_RECEIPT  Protocol = 5
 
 	PROTOCOL_DISTRIBUTE_LOGRT    string = "PLOGRT"
 	PROTOCOL_DISTRIBUTE_LOCATION string = "PPOSOK"
@@ -32,6 +33,7 @@ var PROTOCOL = map[string]Protocol{
 	"TLOGIN":                  PROTOCOL_REPORT_LOGIN,
 	"TPOSUP":                  PROTOCOL_REPORT_LOCATION,
 	PROTOCOL_REPORT_LOWP_FLAG: PROTOCOL_REPORT_LOWP,
+	"TMSREAD":                 PROTOCOL_REPORT_RECEIPT,
 }
 
 func Parse(buffer string) []string {
