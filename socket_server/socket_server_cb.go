@@ -3,6 +3,7 @@ package socket_server
 import (
 	"github.com/giskook/ring/base"
 	"github.com/giskook/ring/socket_server/protocol"
+	"strconv"
 )
 
 func (ss *SocketServer) eh_report_login(p []string, c *Connection) {
@@ -12,8 +13,9 @@ func (ss *SocketServer) eh_report_login(p []string, c *Connection) {
 		To:    ss.conf.Nsq.TopicPManage,
 	}
 	login := protocol.ParseReportLogin(p, header)
-	c.ID = login.InnerID
-	ss.cm.Put(login.InnerID, c)
+	id, _ := strconv.ParseUint(login.Imei, 10, 64)
+	c.ID = id
+	ss.cm.Put(id, c)
 	ss.SocketIn <- &base.SocketData{
 		Header: header,
 		Data:   login.Serialize(),
@@ -39,4 +41,19 @@ func (ss *SocketServer) eh_report_location(p []string) {
 		Header: header,
 		Data:   location.Serialize(),
 	}
+}
+
+func (ss *SocketServer) eh_report_lowp(p []string) {
+	header := &base.Header{
+		AppID: ss.conf.AppID,
+		From:  ss.conf.UUID,
+		To:    ss.conf.Nsq.TopicPControl,
+	}
+	lowp := protocol.ParseReportLowp(p, header)
+
+	ss.SocketIn <- &base.SocketData{
+		Header: header,
+		Data:   lowp.Serialize(),
+	}
+	ss.Send(protocol.GenPackPkg(lowp.Imei, lowp.Time, protocol.PROTOCOL_REPORT_LOWP_FLAG))
 }

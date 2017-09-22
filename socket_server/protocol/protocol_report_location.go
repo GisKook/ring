@@ -38,7 +38,6 @@ type Cell struct {
 
 type ReportLocationPkg struct {
 	Header        *base.Header
-	InnerID       uint64
 	Imei          string
 	Serial        string
 	TerminalStaus string // "00" 正常 ”x1" 拆卸 "1x" 低电
@@ -117,7 +116,6 @@ func (p *ReportLocationPkg) Serialize() []byte {
 func ParseReportLocation(p []string, h *base.Header) *ReportLocationPkg {
 	r := &ReportLocationPkg{
 		Header:        h,
-		InnerID:       GetInnerID(p[2]),
 		Imei:          p[2],
 		Serial:        p[3],
 		TerminalStaus: p[4],

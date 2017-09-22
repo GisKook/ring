@@ -4,6 +4,7 @@ package Carrier;
 import "base.proto";
 import "report_login.proto";
 import "report_location.proto";
+import "report_lowp.proto";
 
 message Report{ 
 	Header header = 1;
@@ -12,9 +13,11 @@ message Report{
 		LOGIN         = 1;
 		LOCATION      = 2;
 		LOCATION_INFO = 3;
+		LOWP          = 4;
 	}
 	Protocol protocol          = 2;
 	ReportLogin login          = 3;
 	ReportLocation location    = 4;
 	LocationInfo location_info = 5;
+	ReportLowp lowp 	   = 6;
 }

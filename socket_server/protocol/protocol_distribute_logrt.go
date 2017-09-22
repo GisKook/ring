@@ -20,8 +20,8 @@ func (d *DistributeLogRtPkg) Serialize() []byte {
 	return []byte(cmd)
 }
 
-func ParseDistributeLogRt(d *Carrier.Distribute) (uint64, *DistributeLogRtPkg) {
-	return GetInnerID(d.Logrt.Id), &DistributeLogRtPkg{
+func ParseDistributeLogRt(d *Carrier.Distribute) (string, *DistributeLogRtPkg) {
+	return d.Logrt.Id, &DistributeLogRtPkg{
 		Imei:   d.Logrt.Id,
 		Time:   d.Logrt.Time,
 		Result: d.Logrt.Result,

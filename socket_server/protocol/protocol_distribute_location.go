@@ -22,10 +22,10 @@ func (d *DistributeLocationPkg) Serialize() []byte {
 	return []byte(cmd)
 }
 
-func ParseDistributeLocation(d *Carrier.Distribute) (uint64, *DistributeLocationPkg) {
+func ParseDistributeLocation(d *Carrier.Distribute) (string, *DistributeLocationPkg) {
 	extra := &Carrier.LocationExtra{}
 	proto.Unmarshal(d.LocationResult.Extra, extra)
-	return GetInnerID(d.Logrt.Id), &DistributeLocationPkg{
+	return extra.Imei, &DistributeLocationPkg{
 		Imei:        extra.Imei,
 		Time:        extra.Time,
 		PosReason:   extra.PosReason,

@@ -6,6 +6,7 @@ import (
 	"github.com/giskook/ring/conf"
 	"log"
 	"net"
+	"strconv"
 	"sync"
 	"time"
 )
@@ -58,7 +59,8 @@ func (ss *SocketServer) Start() error {
 	return nil
 }
 
-func (ss *SocketServer) Send(id uint64, p gotcp.Packet) error {
+func (ss *SocketServer) Send(imei string, p gotcp.Packet) error {
+	id, _ := strconv.ParseUint(imei, 10, 64)
 	c := ss.cm.Get(id)
 	if c != nil {
 		return c.Send(p)

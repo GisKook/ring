@@ -8,8 +8,7 @@ import (
 
 type ReportLoginPkg struct {
 	Header     *base.Header
-	InnerID    uint64
-	ID         string
+	Imei       string
 	DeviceType string
 	Protocol   string
 }
@@ -23,7 +22,7 @@ func (p *ReportLoginPkg) Serialize() []byte {
 		},
 		Protocol: Carrier.Report_LOGIN,
 		Login: &Carrier.ReportLogin{
-			Imei:       p.ID,
+			Imei:       p.Imei,
 			DeviceType: p.DeviceType,
 			Protocol:   p.Protocol,
 		},
@@ -37,8 +36,7 @@ func (p *ReportLoginPkg) Serialize() []byte {
 func ParseReportLogin(p []string, h *base.Header) *ReportLoginPkg {
 	return &ReportLoginPkg{
 		Header:     h,
-		InnerID:    GetInnerID(p[2]),
-		ID:         p[3],
+		Imei:       p[3],
 		DeviceType: p[4],
 		Protocol:   p[5],
 	}

@@ -12,6 +12,7 @@ It is generated from these files:
 	distribute.proto
 	report_location.proto
 	report_login.proto
+	report_lowp.proto
 	report.proto
 
 It has these top-level messages:
@@ -25,6 +26,7 @@ It has these top-level messages:
 	LocationInfo
 	ReportLocation
 	ReportLogin
+	ReportLowp
 	Report
 */
 package Carrier

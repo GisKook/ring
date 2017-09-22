@@ -2,7 +2,6 @@ package protocol
 
 import (
 	"bytes"
-	"strconv"
 	"strings"
 )
 
@@ -20,23 +19,23 @@ const (
 
 	PROTOCOL_REPORT_LOGIN    Protocol = 1
 	PROTOCOL_REPORT_LOCATION Protocol = 2
+	PROTOCOL_REPORT_LOWP     Protocol = 4
 
 	PROTOCOL_DISTRIBUTE_LOGRT    string = "PLOGRT"
 	PROTOCOL_DISTRIBUTE_LOCATION string = "PPOSOK"
+	PROTOCOL_DISTRIBUTE_PACK     string = "PACK"
+
+	PROTOCOL_REPORT_LOWP_FLAG string = "TLOWP"
 )
 
 var PROTOCOL = map[string]Protocol{
-	"TLOGIN": PROTOCOL_REPORT_LOGIN,
-	"TPOSUP": PROTOCOL_REPORT_LOCATION,
+	"TLOGIN":                  PROTOCOL_REPORT_LOGIN,
+	"TPOSUP":                  PROTOCOL_REPORT_LOCATION,
+	PROTOCOL_REPORT_LOWP_FLAG: PROTOCOL_REPORT_LOWP,
 }
 
 func Parse(buffer string) []string {
 	return strings.Split(buffer, PROTOCOL_SEP)
-}
-
-func GetInnerID(id string) uint64 {
-	_id, _ := strconv.ParseUint(id, 10, 64)
-	return _id
 }
 
 func write_header(protocol_id string, imei string) string {
