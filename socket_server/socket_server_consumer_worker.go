@@ -26,6 +26,8 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 					switch distribute.Protocol {
 					case Carrier.Distribute_LOGRT:
 						err = ss.Send(protocol.ParseDistributeLogRt(distribute))
+					case Carrier.Distribute_LOCATION_RESULT:
+						err = ss.Send(protocol.ParseDistributeLocation(distribute))
 					}
 
 					if err != nil {

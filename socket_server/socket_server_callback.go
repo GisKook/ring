@@ -38,6 +38,8 @@ func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 			return true
 		case protocol.PROTOCOL_REPORT_LOGIN:
 			ss.eh_report_login(values, connection)
+		case protocol.PROTOCOL_REPORT_LOCATION:
+			ss.eh_report_location(values)
 		}
 	}
 }

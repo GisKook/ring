@@ -12,23 +12,6 @@ message StationCell {
 	string dbm = 3;
 }
 
-message LocationExtra{
-	// imei
-	string imei = 1;
-	// serial
-	string serial = 2;
-	// terminal status  "00" 正常 ”x1" 拆卸 "1x" 低电
-	string terminal_status = 3;
-	// time  格式为YYMMDD-HHMMSS
-	string time = 4;
-	// 电量
-	string batt = 5;
-	// 0 终端主动上报 1 终端被动上报 2 终端位置补报 3 超圈检测
-	string pos_reason = 6;
-	// 定位类型 0=GPS位置，1=基站位置,2=wifi定位
-	string pos_type = 7; 
-}
-
 // 将数据上传给位置解析服务的结构
 // 如果解析成功 则 将位置转发，使用message ReportLocation 如果失败则返回给请求方
 message LocationInfo { 

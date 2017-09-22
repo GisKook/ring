@@ -12,12 +12,13 @@ type NsqConsumerTopic struct {
 }
 
 type Nsq struct {
-	Addr           string
-	ProducerCount  int
-	TopicPManage   string
-	TopicPControl  string
-	TopicPLocation string
-	TopicConsumer  *NsqConsumerTopic
+	Addr                 string
+	ProducerCount        int
+	TopicPManage         string
+	TopicPControl        string
+	TopicPLocation       string
+	TopicPLocationParser string
+	TopicConsumer        *NsqConsumerTopic
 }
 
 type TcpServer struct {

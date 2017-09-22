@@ -45,7 +45,7 @@ type ReportLocationPkg struct {
 	Batt          string
 	Time          string // 格式为YYMMDD-HHMMSS
 	PosReason     string // 0 终端主动上报 1 终端被动上报 2 终端位置补报 3 超圈检测
-	PosType       string
+	PosType       string // 0 GPS 1 cell 2 wifi
 	GpsInfo       *Gps
 	WifiInfo      []*Wifi
 	CellInfo      []*Cell

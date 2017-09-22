@@ -3,13 +3,16 @@ package Carrier;
 
 import "base.proto";
 import "distribute_logrt.proto";
+import "distribute_location.proto";
 
 message Distribute{ 
 	Header header = 1;
 	enum Protocol{
 		UNKNOWN = 0;
 		LOGRT = 1;
+		LOCATION_RESULT = 2;
 	}
 	Protocol protocol = 2;
 	DistributeLogRt logrt = 3;
+	LocationResult location_result = 4;
 }
