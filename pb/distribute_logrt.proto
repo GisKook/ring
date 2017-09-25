@@ -3,9 +3,15 @@ package Carrier;
 
 message DistributeLogRt{
 	// imei
-	string id = 1;
-	// time 格式为YYMMDD-HHMMSS 例如170918-091800表示2017年09月18日09时18分00秒 勿忘国耻!
-	string time = 2;
-	// 1 登录成功 2 非法用户
+	string imei   = 1;
+
+	// time 格式为YYMMDD-HHMMSS
+	// 例如170918-091800表示
+	// 2017年09月18日09时18分00秒 
+	// 勿忘国耻!
+	string time   = 2;
+
+	// 1 登录成功 
+	// 2 非法用户
 	string result = 3;
 }

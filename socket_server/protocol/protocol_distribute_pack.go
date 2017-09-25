@@ -7,7 +7,7 @@ type DistributePackPkg struct {
 }
 
 func (d *DistributePackPkg) Serialize() []byte {
-	cmd := write_header(PROTOCOL_DISTRIBUTE_PACK, d.Imei)
+	cmd := write_header(PROTOCOL_DISTRIBUTE_ACK, d.Imei)
 	cmd += d.Serial
 	cmd += PROTOCOL_SEP
 	cmd += d.CmdType

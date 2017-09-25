@@ -21,8 +21,8 @@ func (d *DistributeLogRtPkg) Serialize() []byte {
 }
 
 func ParseDistributeLogRt(d *Carrier.Distribute) (string, *DistributeLogRtPkg) {
-	return d.Logrt.Id, &DistributeLogRtPkg{
-		Imei:   d.Logrt.Id,
+	return d.Logrt.Imei, &DistributeLogRtPkg{
+		Imei:   d.Logrt.Imei,
 		Time:   d.Logrt.Time,
 		Result: d.Logrt.Result,
 	}

@@ -10,6 +10,9 @@ It is generated from these files:
 	distribute_location.proto
 	distribute_logrt.proto
 	distribute.proto
+	distribute_reqp.proto
+	distribute_tearchk.proto
+	report_ack.proto
 	report_location.proto
 	report_login.proto
 	report_lowp.proto
@@ -22,6 +25,9 @@ It has these top-level messages:
 	LocationResult
 	DistributeLogRt
 	Distribute
+	DistributeReqp
+	DistributeTearchk
+	ReportAck
 	WifiCell
 	StationCell
 	LocationInfo

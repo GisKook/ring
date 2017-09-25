@@ -71,3 +71,17 @@ func (ss *SocketServer) eh_report_receipt(p []string) {
 		Data:   receipt.Serialize(),
 	}
 }
+
+func (ss *SocketServer) eh_report_receipt(p []string) {
+	header := &base.Header{
+		AppID: ss.conf.AppID,
+		From:  ss.conf.UUID,
+		To:    ss.conf.Nsq.TopicPControl,
+	}
+	ack := protocol.ParseReportAck(p, header)
+
+	ss.SocketIn <- &base.SocketData{
+		Header: header,
+		Data:   ack.Serialize(),
+	}
+}

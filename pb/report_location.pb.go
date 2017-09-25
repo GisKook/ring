@@ -21,7 +21,7 @@ type WifiCell struct {
 func (m *WifiCell) Reset()                    { *m = WifiCell{} }
 func (m *WifiCell) String() string            { return proto.CompactTextString(m) }
 func (*WifiCell) ProtoMessage()               {}
-func (*WifiCell) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*WifiCell) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *WifiCell) GetMac() string {
 	if m != nil {
@@ -46,7 +46,7 @@ type StationCell struct {
 func (m *StationCell) Reset()                    { *m = StationCell{} }
 func (m *StationCell) String() string            { return proto.CompactTextString(m) }
 func (*StationCell) ProtoMessage()               {}
-func (*StationCell) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{1} }
+func (*StationCell) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{1} }
 
 func (m *StationCell) GetLac() string {
 	if m != nil {
@@ -83,7 +83,7 @@ type LocationInfo struct {
 func (m *LocationInfo) Reset()                    { *m = LocationInfo{} }
 func (m *LocationInfo) String() string            { return proto.CompactTextString(m) }
 func (*LocationInfo) ProtoMessage()               {}
-func (*LocationInfo) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{2} }
+func (*LocationInfo) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{2} }
 
 func (m *LocationInfo) GetExtra() []byte {
 	if m != nil {
@@ -118,7 +118,7 @@ type ReportLocation struct {
 func (m *ReportLocation) Reset()                    { *m = ReportLocation{} }
 func (m *ReportLocation) String() string            { return proto.CompactTextString(m) }
 func (*ReportLocation) ProtoMessage()               {}
-func (*ReportLocation) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{3} }
+func (*ReportLocation) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{3} }
 
 func (m *ReportLocation) GetExtra() []byte {
 	if m != nil {
@@ -155,9 +155,9 @@ func init() {
 	proto.RegisterType((*ReportLocation)(nil), "Carrier.ReportLocation")
 }
 
-func init() { proto.RegisterFile("report_location.proto", fileDescriptor4) }
+func init() { proto.RegisterFile("report_location.proto", fileDescriptor7) }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor7 = []byte{
 	// 235 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x5c, 0x90, 0x3d, 0x4f, 0xc3, 0x30,
 	0x10, 0x86, 0x55, 0x0c, 0xb4, 0xb9, 0x84, 0x8f, 0x5a, 0x20, 0x65, 0x44, 0x11, 0x43, 0xc4, 0x90,
