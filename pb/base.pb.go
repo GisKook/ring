@@ -7,28 +7,41 @@ Package Carrier is a generated protocol buffer package.
 
 It is generated from these files:
 	base.proto
+	distribute_cross.proto
+	distribute_ctl.proto
+	distribute_freset.proto
 	distribute_location.proto
 	distribute_logrt.proto
+	distribute_lowpset.proto
 	distribute_message.proto
 	distribute.proto
 	distribute_reqp.proto
+	distribute_srvset.proto
 	distribute_tearchk.proto
+	distribute_upgrade.proto
 	report_ack.proto
 	report_location.proto
 	report_login.proto
 	report_lowp.proto
 	report.proto
 	report_receipt.proto
+	report_upresult.proto
 
 It has these top-level messages:
 	Header
 	LocationExtra
+	DistributeCross
+	DistributeCtl
+	DistributeFreset
 	LocationResult
 	DistributeLogRt
+	DistributeLowpset
 	DistributeMessage
 	Distribute
 	DistributeReqp
+	DistributeSrvset
 	DistributeTearchk
+	DistributeUpgrade
 	ReportAck
 	WifiCell
 	StationCell
@@ -38,6 +51,7 @@ It has these top-level messages:
 	ReportLowp
 	Report
 	ReportReceipt
+	ReportUpresult
 */
 package Carrier
 

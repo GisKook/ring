@@ -46,6 +46,8 @@ func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 			ss.eh_report_receipt(values)
 		case protocol.PROTOCOL_REPORT_ACK:
 			ss.eh_report_ack(values)
+		case protocol.PROTOCOL_REPORT_UPRESULT:
+			ss.eh_report_upresult(values)
 		}
 	}
 }

@@ -85,3 +85,17 @@ func (ss *SocketServer) eh_report_ack(p []string) {
 		Data:   ack.Serialize(),
 	}
 }
+
+func (ss *SocketServer) eh_report_upresult(p []string) {
+	header := &base.Header{
+		AppID: ss.conf.AppID,
+		From:  ss.conf.UUID,
+		To:    ss.conf.Nsq.TopicPControl,
+	}
+	upresult := protocol.ParseReportUpresult(p, header)
+
+	ss.SocketIn <- &base.SocketData{
+		Header: header,
+		Data:   upresult.Serialize(),
+	}
+}

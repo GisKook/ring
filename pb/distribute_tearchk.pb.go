@@ -23,7 +23,7 @@ type DistributeTearchk struct {
 func (m *DistributeTearchk) Reset()                    { *m = DistributeTearchk{} }
 func (m *DistributeTearchk) String() string            { return proto.CompactTextString(m) }
 func (*DistributeTearchk) ProtoMessage()               {}
-func (*DistributeTearchk) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (*DistributeTearchk) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
 
 func (m *DistributeTearchk) GetImei() string {
 	if m != nil {
@@ -43,9 +43,9 @@ func init() {
 	proto.RegisterType((*DistributeTearchk)(nil), "Carrier.DistributeTearchk")
 }
 
-func init() { proto.RegisterFile("distribute_tearchk.proto", fileDescriptor6) }
+func init() { proto.RegisterFile("distribute_tearchk.proto", fileDescriptor11) }
 
-var fileDescriptor6 = []byte{
+var fileDescriptor11 = []byte{
 	// 102 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x48, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0x2f, 0x49, 0x4d, 0x2c, 0x4a, 0xce, 0xc8, 0xd6, 0x2b,

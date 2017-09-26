@@ -7,6 +7,7 @@ import "report_location.proto";
 import "report_lowp.proto";
 import "report_receipt.proto";
 import "report_ack.proto";
+import "report_upresult.proto";
 
 message Report{ 
 	Header header = 1;
@@ -18,6 +19,7 @@ message Report{
 		LOWP          = 4;
 		RECEIPT       = 5;
 		ACK           = 6;
+		UPRESULT      = 7;
 	}
 	Protocol protocol          = 2;
 	ReportLogin login          = 3;
@@ -26,4 +28,5 @@ message Report{
 	ReportLowp lowp 	   = 6;
 	ReportReceipt receipt      = 7;
 	ReportAck ack              = 8;
+	ReportUpresult upresult    = 9;
 }

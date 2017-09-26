@@ -3,7 +3,8 @@ package Carrier;
 
 message DistributeTearchk{
 	// imei
-	string imei = 1;
+	string imei   = 1;
+
 	// 序列号
 	string serial = 2;
 }

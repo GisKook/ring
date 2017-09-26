@@ -34,6 +34,18 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 						err = ss.Send(protocol.ParseDistributeTearchk(distribute))
 					case Carrier.Distribute_MESSAGE:
 						err = ss.Send(protocol.ParseDistributeMessage(distribute))
+					case Carrier.Distribute_CROSS:
+						err = ss.Send(protocol.ParseDistributeCross(distribute))
+					case Carrier.Distribute_FRESET:
+						err = ss.Send(protocol.ParseDistributeFreset(distribute))
+					case Carrier.Distribute_LOWPSET:
+						err = ss.Send(protocol.ParseDistributeLowpset(distribute))
+					case Carrier.Distribute_CTL:
+						err = ss.Send(protocol.ParseDistributeCtl(distribute))
+					case Carrier.Distribute_SRVSET:
+						err = ss.Send(protocol.ParseDistributeSrvset(distribute))
+					case Carrier.Distribute_UPGRADE:
+						err = ss.Send(protocol.ParseDistributeUpgrade(distribute))
 					}
 
 					if err != nil {

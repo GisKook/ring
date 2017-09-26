@@ -3,9 +3,11 @@ package Carrier;
 
 message ReportReceipt{ 
 	// imei
-	string imei = 1;
+	string imei   = 1;
+
 	// 序列号
 	string serial = 2;
+
 	// 时间 格式为YYMMDD-HHMMSS
-	string time = 3;
+	string time   = 3;
 }
