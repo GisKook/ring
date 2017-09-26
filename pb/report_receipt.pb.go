@@ -25,7 +25,7 @@ type ReportReceipt struct {
 func (m *ReportReceipt) Reset()                    { *m = ReportReceipt{} }
 func (m *ReportReceipt) String() string            { return proto.CompactTextString(m) }
 func (*ReportReceipt) ProtoMessage()               {}
-func (*ReportReceipt) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
+func (*ReportReceipt) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
 
 func (m *ReportReceipt) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*ReportReceipt)(nil), "Carrier.ReportReceipt")
 }
 
-func init() { proto.RegisterFile("report_receipt.proto", fileDescriptor11) }
+func init() { proto.RegisterFile("report_receipt.proto", fileDescriptor12) }
 
-var fileDescriptor11 = []byte{
+var fileDescriptor12 = []byte{
 	// 109 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x29, 0x4a, 0x2d, 0xc8,
 	0x2f, 0x2a, 0x89, 0x2f, 0x4a, 0x4d, 0x4e, 0xcd, 0x2c, 0x28, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9,

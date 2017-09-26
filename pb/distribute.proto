@@ -6,6 +6,7 @@ import "distribute_logrt.proto";
 import "distribute_location.proto";
 import "distribute_reqp.proto";
 import "distribute_tearchk.proto";
+import "distribute_message.proto";
 
 message Distribute{ 
 	Header header = 1;
@@ -15,10 +16,12 @@ message Distribute{
 		LOCATION_RESULT = 2;
 		REQP            = 3;
 		TEARCHK         = 4;
+		MESSAGE         = 5;
 	}
 	Protocol protocol                = 2;
 	DistributeLogRt logrt            = 3;
 	LocationResult location_result   = 4;
 	DistributeReqp reqp              = 5;
 	DistributeTearchk tearchk        = 6;
+	DistributeMessage message        = 7;
 }

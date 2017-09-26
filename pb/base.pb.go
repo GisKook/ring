@@ -9,6 +9,7 @@ It is generated from these files:
 	base.proto
 	distribute_location.proto
 	distribute_logrt.proto
+	distribute_message.proto
 	distribute.proto
 	distribute_reqp.proto
 	distribute_tearchk.proto
@@ -24,6 +25,7 @@ It has these top-level messages:
 	LocationExtra
 	LocationResult
 	DistributeLogRt
+	DistributeMessage
 	Distribute
 	DistributeReqp
 	DistributeTearchk

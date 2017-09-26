@@ -72,7 +72,7 @@ func (ss *SocketServer) eh_report_receipt(p []string) {
 	}
 }
 
-func (ss *SocketServer) eh_report_receipt(p []string) {
+func (ss *SocketServer) eh_report_ack(p []string) {
 	header := &base.Header{
 		AppID: ss.conf.AppID,
 		From:  ss.conf.UUID,

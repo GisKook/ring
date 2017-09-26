@@ -32,6 +32,8 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 						err = ss.Send(protocol.ParseDistributeReqp(distribute))
 					case Carrier.Distribute_TEARCHK:
 						err = ss.Send(protocol.ParseDistributeTearchk(distribute))
+					case Carrier.Distribute_MESSAGE:
+						err = ss.Send(protocol.ParseDistributeMessage(distribute))
 					}
 
 					if err != nil {
