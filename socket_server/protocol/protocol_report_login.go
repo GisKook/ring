@@ -36,8 +36,8 @@ func (p *ReportLoginPkg) Serialize() []byte {
 func ParseReportLogin(p []string, h *base.Header) *ReportLoginPkg {
 	return &ReportLoginPkg{
 		Header:     h,
-		Imei:       p[3],
-		DeviceType: p[4],
-		Protocol:   p[5],
+		Imei:       p[2],
+		DeviceType: p[3],
+		Protocol:   p[4],
 	}
 }

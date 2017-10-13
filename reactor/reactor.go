@@ -35,6 +35,8 @@ func (r *Reactor) Start() error {
 		return err
 	}
 
+	r.shunt()
+
 	return nil
 }
 

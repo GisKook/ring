@@ -35,6 +35,14 @@ func (ss *SocketServer) eh_report_location(p []string) {
 	// but in the protobuf the header's finnal dst will always be upper server
 	if location.PosType != protocol.LOCATION_TYPE_GPS {
 		header.To = ss.conf.Nsq.TopicPLocationParser
+	} else {
+		l := &protocol.DistributeLocationPkg{
+			Imei:        location.Imei,
+			Time:        location.Time,
+			PosReason:   location.PosReason,
+			ParseResult: "",
+		}
+		ss.Send(location.Imei, l)
 	}
 
 	ss.SocketIn <- &base.SocketData{

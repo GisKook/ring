@@ -18,7 +18,7 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 			case p := <-ss.SocketOut:
 				distribute := &Carrier.Distribute{}
 				err := proto.Unmarshal(p, distribute)
-				log.Printf("<IN NSQ> %x %s \n", p, string(p))
+				log.Printf("<IN NSQ> %s \n", p)
 				if err != nil {
 					log.Println("<ERR> %x unmarshal error\n", p)
 				} else {

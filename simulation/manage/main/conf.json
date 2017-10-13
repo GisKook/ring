@@ -1,15 +1,12 @@
 {
 	"AppID":"ring",
-	"UUID":"ring_das1",
+	"UUID":"dcs",
 	"Nsq":{
 		"Addr":"192.168.2.67:4150",
 		"ProducerCount":3,
-		"TopicPManage":"ring_dcs",
-		"TopicPControl":"ring_dcs",
-		"TopicPLocation":"ring_dcs",
 		"TopicConsumer":{
-			"Topic":"ring_das1",
-			"Channel":"das1_ch",
+			"Topic":"dcs",
+			"Channel":"dcs_ch",
 			"Number":3
 		}
 	},
