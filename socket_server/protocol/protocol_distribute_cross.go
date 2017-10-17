@@ -2,7 +2,7 @@ package protocol
 
 import (
 	//"encoding/base64"
-	"github.com/giskook/ring/pb"
+	"github.com/giskook/ring/pb/common"
 )
 
 type DistributeCrossPkg struct {

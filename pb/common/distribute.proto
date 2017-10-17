@@ -19,7 +19,7 @@ message Distribute{
 	enum Protocol{
 		UNKNOWN         = 0;
 		LOGRT           = 1;
-		LOCATION_RESULT = 2;
+		LOCATION        = 2;
 		REQP            = 3;
 		TEARCHK         = 4;
 		MESSAGE         = 5;
@@ -30,16 +30,16 @@ message Distribute{
 		SRVSET          = 10;
 		UPGRADE         = 11;
 	}
-	Protocol protocol                = 2;
-	DistributeLogRt logrt            = 3;
-	LocationResult location_result   = 4;
-	DistributeReqp reqp              = 5;
-	DistributeTearchk tearchk        = 6;
-	DistributeMessage message        = 7;
-	DistributeCross cross            = 8;
-	DistributeFreset freset          = 9;
-	DistributeLowpset lowpset        = 10;
-	DistributeCtl ctl                = 11;
-	DistributeSrvset srvset          = 12;
-	DistributeUpgrade upgrade        = 13;
+	Protocol protocol                    = 2;
+	DistributeLogRt logrt                = 3;
+	DistributeLocation location          = 4;
+	DistributeReqp reqp                  = 5;
+	DistributeTearchk tearchk            = 6;
+	DistributeMessage message            = 7;
+	DistributeCross cross                = 8;
+	DistributeFreset freset              = 9;
+	DistributeLowpset lowpset            = 10;
+	DistributeCtl ctl                    = 11;
+	DistributeSrvset srvset              = 12;
+	DistributeUpgrade upgrade            = 13;
 }

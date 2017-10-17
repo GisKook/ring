@@ -11,6 +11,7 @@ type NsqServer struct {
 	_consumers []*nsq_server_socket_c
 	producers  []*nsq_server_socket_p
 	NsqDataIn  chan []byte
+	NsqLbsIn   chan []byte
 	NsqDataOut chan *base.SocketData
 	exit       chan struct{}
 	wait_exit  *sync.WaitGroup
@@ -20,6 +21,7 @@ func NewNsqServer(conf *conf.Nsq) *NsqServer {
 	return &NsqServer{
 		conf:       conf,
 		NsqDataIn:  make(chan []byte),
+		NsqLbsIn:   make(chan []byte),
 		NsqDataOut: make(chan *base.SocketData),
 		exit:       make(chan struct{}),
 		_consumers: make([]*nsq_server_socket_c, 0),
@@ -29,7 +31,7 @@ func NewNsqServer(conf *conf.Nsq) *NsqServer {
 }
 
 func (n *NsqServer) Start() error {
-	err := n.create_consumer_socket()
+	err := n.create_consumer_socket(n.conf.Addr)
 	if err != nil {
 		return err
 	}
@@ -49,5 +51,6 @@ func (n *NsqServer) Stop() {
 	close(n.exit)
 	n.wait_exit.Wait()
 	close(n.NsqDataIn)
+	close(n.NsqLbsIn)
 	close(n.NsqDataOut)
 }

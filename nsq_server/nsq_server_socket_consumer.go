@@ -7,15 +7,15 @@ import (
 )
 
 type nsq_server_socket_c struct {
-	conf    *conf.Nsq
+	conf    *conf.NsqConsumerTopic
 	c       *nsq.Consumer
-	handler nsq.Handler
+	handler nsq.HandlerFunc
 }
 
-func new_nsq_server_socket_c(conf *conf.Nsq, handler nsq.Handler) *nsq_server_socket_c {
+func new_nsq_server_socket_c(conf *conf.NsqConsumerTopic, handler nsq.HandlerFunc) *nsq_server_socket_c {
 	nsq_conf := nsq.NewConfig()
 
-	c, err := nsq.NewConsumer(conf.TopicConsumer.Topic, conf.TopicConsumer.Channel, nsq_conf)
+	c, err := nsq.NewConsumer(conf.Topic, conf.Channel, nsq_conf)
 	if err != nil {
 		return nil
 	}
@@ -27,10 +27,9 @@ func new_nsq_server_socket_c(conf *conf.Nsq, handler nsq.Handler) *nsq_server_so
 	}
 }
 
-func (n *nsq_server_socket_c) connect_to_server() error {
+func (n *nsq_server_socket_c) connect_to_server(addr string) error {
 	n.c.AddHandler(n.handler)
-
-	err := n.c.ConnectToNSQD(n.conf.Addr)
+	err := n.c.ConnectToNSQD(addr)
 	if err != nil {
 		return err
 	}
@@ -42,13 +41,22 @@ func (n *nsq_server_socket_c) stop() {
 	n.c.Stop()
 }
 
-func (n *NsqServer) create_consumer_socket() error {
+func (n *NsqServer) create_consumer_socket(addr string) error {
 	for i := 0; i < n.conf.TopicConsumer.Number; i++ {
-		n._consumers = append(n._consumers, new_nsq_server_socket_c(n.conf, n))
+		c := new_nsq_server_socket_c(n.conf.TopicConsumer, n.HandleMessage)
+
+		n._consumers = append(n._consumers, c)
+
+	}
+
+	for i := 0; i < n.conf.TopicLbsConsumer.Number; i++ {
+		c := new_nsq_server_socket_c(n.conf.TopicLbsConsumer, n.HandleLbsMessage)
+
+		n._consumers = append(n._consumers, c)
 	}
 	for _, c := range n._consumers {
 		if c != nil {
-			err := c.connect_to_server()
+			err := c.connect_to_server(addr)
 			if err != nil {
 				return err
 			}

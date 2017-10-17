@@ -2,7 +2,8 @@ package protocol
 
 import (
 	"github.com/giskook/ring/base"
-	"github.com/giskook/ring/pb"
+	"github.com/giskook/ring/pb/common"
+	"github.com/giskook/ring/pb/lbs_parser"
 	"github.com/golang/protobuf/proto"
 	"strings"
 )
@@ -65,42 +66,27 @@ func (p *ReportLocationPkg) SerializeExtra() []byte {
 
 	return data
 }
-func (p *ReportLocationPkg) Serialize() []byte {
-	report := &Carrier.Report{
-		Header: &Carrier.Header{
+
+func (p *ReportLocationPkg) SerializeLbs() []byte {
+	report := &Lbs.Report{
+		Header: &Lbs.Header{
 			Appid: p.Header.AppID,
 			From:  p.Header.From,
 			To:    p.Header.To,
 		},
-		Protocol: Carrier.Report_LOCATION_INFO,
+		Extra: p.SerializeExtra(),
 	}
 
 	if p.PosType == LOCATION_TYPE_WIFI {
-		report.LocationInfo = &Carrier.LocationInfo{
-			Extra: p.SerializeExtra(),
-		}
 		for _, v := range p.WifiInfo {
-			report.LocationInfo.WifiCell = append(report.LocationInfo.WifiCell, &Carrier.WifiCell{
+			report.WifiCell = append(report.WifiCell, &Lbs.WifiCell{
 				Mac:     v.Mac,
 				Singnal: v.Singnal,
 			})
 		}
-	} else if p.PosType == LOCATION_TYPE_GPS {
-		report.Protocol = Carrier.Report_LOCATION
-		report.Location = &Carrier.ReportLocation{
-			Extra:     p.SerializeExtra(),
-			Longitude: p.GpsInfo.Longitude,
-			Latitude:  p.GpsInfo.Latitude,
-			Speed:     p.GpsInfo.Speed,
-		}
-
 	} else if p.PosType == LOCATION_TYPE_CELL {
-		report.LocationInfo = &Carrier.LocationInfo{
-			Extra: p.SerializeExtra(),
-		}
-
 		for _, v := range p.CellInfo {
-			report.LocationInfo.StationCell = append(report.LocationInfo.StationCell, &Carrier.StationCell{
+			report.StationCell = append(report.StationCell, &Lbs.StationCell{
 				Lac: v.Lac,
 				Cid: v.Cid,
 				Dbm: v.Dbm,
@@ -113,7 +99,28 @@ func (p *ReportLocationPkg) Serialize() []byte {
 	return data
 }
 
-func ParseReportLocation(p []string, h *base.Header) *ReportLocationPkg {
+func (p *ReportLocationPkg) Serialize() []byte {
+	report := &Carrier.Report{
+		Header: &Carrier.Header{
+			Appid: p.Header.AppID,
+			From:  p.Header.From,
+			To:    p.Header.To,
+		},
+		Protocol: Carrier.Report_LOCATION,
+		Location: &Carrier.ReportLocation{
+			Extra:     p.SerializeExtra(),
+			Longitude: p.GpsInfo.Longitude,
+			Latitude:  p.GpsInfo.Latitude,
+			Speed:     p.GpsInfo.Speed,
+		},
+	}
+
+	data, _ := proto.Marshal(report)
+
+	return data
+}
+
+func ParseReportLocation(p []string, h *base.Header, from4gps string, from4lbs string) *ReportLocationPkg {
 	r := &ReportLocationPkg{
 		Header:        h,
 		Imei:          p[2],
@@ -124,9 +131,11 @@ func ParseReportLocation(p []string, h *base.Header) *ReportLocationPkg {
 		PosReason:     p[7],
 		PosType:       p[8],
 	}
+	r.Header.From = from4lbs
 	rest := p[9][0 : len(p[9])-2]
 	if p[8] == LOCATION_TYPE_GPS {
 		values := strings.Split(rest, LOCATION_GPS_SEP)
+		r.Header.From = from4gps
 		r.GpsInfo = &Gps{
 			Longitude: values[0],
 			Latitude:  values[1],

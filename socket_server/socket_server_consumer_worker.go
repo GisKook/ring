@@ -1,13 +1,38 @@
 package socket_server
 
 import (
-	"github.com/giskook/ring/pb"
+	"github.com/giskook/ring/base"
+	"github.com/giskook/ring/pb/common"
+	"github.com/giskook/ring/pb/lbs_parser"
 	"github.com/giskook/ring/socket_server/protocol"
 	"github.com/golang/protobuf/proto"
 	"log"
 )
 
-func (ss *SocketServer) consumer_worker(c chan []byte) {
+func (ss *SocketServer) consumer_lbs(l []byte) {
+	lbs := &Lbs.Distribute{}
+	err := proto.Unmarshal(l, lbs)
+	log.Printf("<IN NSQ LBS> %s \n", l)
+	if err != nil {
+		log.Println("<ERR> %x unmarshal error\n", l)
+	} else {
+		header := &base.Header{
+			AppID: ss.conf.AppID,
+			From:  ss.conf.UUID,
+			To:    ss.conf.Nsq.TopicPLocation,
+		}
+		imei, d := protocol.ParsedDistributeLocationParsed(lbs, header)
+		if d.ParsedResult == "0" {
+			ss.SocketIn <- &base.SocketData{
+				Header: header,
+				Data:   d.SerializeToUpper(),
+			}
+		}
+		ss.Send(imei, d)
+	}
+}
+
+func (ss *SocketServer) consumer_worker() {
 	ss.wait_exit.Add(1)
 	go func() {
 		for {
@@ -15,6 +40,8 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 			case <-ss.exit:
 				ss.wait_exit.Done()
 				return
+			case l := <-ss.SocketLbsOut:
+				ss.consumer_lbs(l)
 			case p := <-ss.SocketOut:
 				distribute := &Carrier.Distribute{}
 				err := proto.Unmarshal(p, distribute)
@@ -26,8 +53,6 @@ func (ss *SocketServer) consumer_worker(c chan []byte) {
 					switch distribute.Protocol {
 					case Carrier.Distribute_LOGRT:
 						err = ss.Send(protocol.ParseDistributeLogRt(distribute))
-					case Carrier.Distribute_LOCATION_RESULT:
-						err = ss.Send(protocol.ParseDistributeLocation(distribute))
 					case Carrier.Distribute_REQP:
 						err = ss.Send(protocol.ParseDistributeReqp(distribute))
 					case Carrier.Distribute_TEARCHK:

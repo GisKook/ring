@@ -11,10 +11,15 @@
 			"Topic":"ring_das1",
 			"Channel":"das1_ch",
 			"Number":3
+		},
+		"TopicLbsConsumer":{
+			"Topic":"das1_lbs",
+			"Channel":"das1_lbs_ch",
+			"Number":3
 		}
 	},
 	"TcpServer":{
-		"BindPort":"8876",
+		"BindPort":"8877",
 		"ReadLimit":300,
 		"WriteLimit":300,
 		"ConnTimeout":10,

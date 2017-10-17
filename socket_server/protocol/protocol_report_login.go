@@ -2,7 +2,7 @@ package protocol
 
 import (
 	"github.com/giskook/ring/base"
-	"github.com/giskook/ring/pb"
+	"github.com/giskook/ring/pb/common"
 	"github.com/golang/protobuf/proto"
 )
 

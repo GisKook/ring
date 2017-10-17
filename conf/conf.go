@@ -19,6 +19,7 @@ type Nsq struct {
 	TopicPLocation       string
 	TopicPLocationParser string
 	TopicConsumer        *NsqConsumerTopic
+	TopicLbsConsumer     *NsqConsumerTopic
 }
 
 type TcpServer struct {

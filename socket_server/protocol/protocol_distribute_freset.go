@@ -1,7 +1,7 @@
 package protocol
 
 import (
-	"github.com/giskook/ring/pb"
+	"github.com/giskook/ring/pb/common"
 )
 
 type DistributeFresetPkg struct {

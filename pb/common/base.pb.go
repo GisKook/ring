@@ -33,7 +33,7 @@ It has these top-level messages:
 	DistributeCross
 	DistributeCtl
 	DistributeFreset
-	LocationResult
+	DistributeLocation
 	DistributeLogRt
 	DistributeLowpset
 	DistributeMessage
@@ -43,9 +43,6 @@ It has these top-level messages:
 	DistributeTearchk
 	DistributeUpgrade
 	ReportAck
-	WifiCell
-	StationCell
-	LocationInfo
 	ReportLocation
 	ReportLogin
 	ReportLowp

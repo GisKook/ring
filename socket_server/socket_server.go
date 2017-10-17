@@ -12,23 +12,25 @@ import (
 )
 
 type SocketServer struct {
-	conf      *conf.Conf
-	srv       *gotcp.Server
-	cm        *ConnMgr
-	SocketIn  chan *base.SocketData
-	SocketOut chan []byte
-	exit      chan struct{}
-	wait_exit *sync.WaitGroup
+	conf         *conf.Conf
+	srv          *gotcp.Server
+	cm           *ConnMgr
+	SocketIn     chan *base.SocketData
+	SocketOut    chan []byte
+	SocketLbsOut chan []byte
+	exit         chan struct{}
+	wait_exit    *sync.WaitGroup
 }
 
 func NewSocketServer(conf *conf.Conf) *SocketServer {
 	return &SocketServer{
-		conf:      conf,
-		cm:        NewConnMgr(),
-		SocketIn:  make(chan *base.SocketData),
-		SocketOut: make(chan []byte),
-		exit:      make(chan struct{}),
-		wait_exit: new(sync.WaitGroup),
+		conf:         conf,
+		cm:           NewConnMgr(),
+		SocketIn:     make(chan *base.SocketData),
+		SocketOut:    make(chan []byte),
+		SocketLbsOut: make(chan []byte),
+		exit:         make(chan struct{}),
+		wait_exit:    new(sync.WaitGroup),
 	}
 }
 
@@ -53,7 +55,7 @@ func (ss *SocketServer) Start() error {
 	log.Println("<INFO> socket listening:", listener.Addr())
 
 	for i := 0; i < ss.conf.TcpServer.WorkerNum; i++ {
-		ss.consumer_worker(ss.SocketOut)
+		ss.consumer_worker()
 	}
 
 	return nil
@@ -74,6 +76,7 @@ func (ss *SocketServer) Stop() {
 	close(ss.exit)
 	ss.wait_exit.Wait()
 	close(ss.SocketOut)
+	close(ss.SocketLbsOut)
 	close(ss.SocketIn)
 
 	ss.srv.Stop()
