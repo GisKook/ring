@@ -78,6 +78,7 @@ func (p *ReportLocationPkg) SerializeLbs() []byte {
 	}
 
 	if p.PosType == LOCATION_TYPE_WIFI {
+		report.Type = Lbs.Report_WIFI
 		for _, v := range p.WifiInfo {
 			report.WifiCell = append(report.WifiCell, &Lbs.WifiCell{
 				Mac:     v.Mac,
@@ -85,6 +86,7 @@ func (p *ReportLocationPkg) SerializeLbs() []byte {
 			})
 		}
 	} else if p.PosType == LOCATION_TYPE_CELL {
+		report.Type = Lbs.Report_STATION
 		for _, v := range p.CellInfo {
 			report.StationCell = append(report.StationCell, &Lbs.StationCell{
 				Lac: v.Lac,

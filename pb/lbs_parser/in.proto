@@ -16,13 +16,21 @@ message StationCell {
 
 message Report{ 
 	Header header                     = 1;
+	
+	enum LbsType {
+		UNKNOWN  = 0;
+		WIFI     = 1; // wifi 
+		STATION  = 2; // cell
+	}
+	
+	LbsType type                      = 2;
 
 	// Wifi位置
-	repeated WifiCell wifi_cell       = 2; 
+	repeated WifiCell wifi_cell       = 3; 
 
 	// 基站位置
-	repeated StationCell station_cell = 3;
+	repeated StationCell station_cell = 4;
 
 	// 附加数据  LocationExtra 序列化后的结果
-	bytes extra                       = 4;
+	bytes extra                       = 5;
 }
