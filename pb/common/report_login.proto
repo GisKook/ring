@@ -10,4 +10,8 @@ message ReportLogin {
 
 	// 协议版本
 	string protocol    = 3;
+
+    // 时间
+	// time 格式为YYMMDD-HHMMSS
+    string time        = 4;
 }
