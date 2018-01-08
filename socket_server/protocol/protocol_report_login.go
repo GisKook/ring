@@ -4,13 +4,16 @@ import (
 	"github.com/giskook/ring/base"
 	"github.com/giskook/ring/pb/common"
 	"github.com/golang/protobuf/proto"
+	"time"
 )
 
 type ReportLoginPkg struct {
 	Header     *base.Header
 	Imei       string
+	Imsi       string
 	DeviceType string
 	Protocol   string
+	Time       string
 }
 
 func (p *ReportLoginPkg) Serialize() []byte {
@@ -25,6 +28,7 @@ func (p *ReportLoginPkg) Serialize() []byte {
 			Imei:       p.Imei,
 			DeviceType: p.DeviceType,
 			Protocol:   p.Protocol,
+			Time:       p.Time,
 		},
 	}
 
@@ -37,7 +41,9 @@ func ParseReportLogin(p []string, h *base.Header) *ReportLoginPkg {
 	return &ReportLoginPkg{
 		Header:     h,
 		Imei:       p[2],
-		DeviceType: p[3],
-		Protocol:   p[4],
+		Imsi:       p[3],
+		DeviceType: p[4],
+		Protocol:   p[5],
+		Time:       time.Now().Fromat("060102-150405"),
 	}
 }

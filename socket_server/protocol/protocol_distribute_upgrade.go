@@ -6,12 +6,13 @@ import (
 )
 
 type DistributeUpgradePkg struct {
-	Imei   string
-	Serial string
-	Ip     string
-	Port   string
-	User   string
-	Passwd string
+	Imei     string
+	Serial   string
+	Ip       string
+	Port     string
+	User     string
+	Passwd   string
+	FileName string
 }
 
 func (d *DistributeUpgradePkg) Serialize() []byte {
@@ -25,6 +26,8 @@ func (d *DistributeUpgradePkg) Serialize() []byte {
 	cmd += base64.StdEncoding.EncodeToString([]byte(d.User))
 	cmd += PROTOCOL_SEP
 	cmd += base64.StdEncoding.EncodeToString([]byte(d.Passwd))
+	cmd += PROTOCOL_SEP
+	cmd += d.FileName
 	cmd += PROTOCOL_END_FLAG
 
 	return []byte(cmd)
@@ -32,11 +35,12 @@ func (d *DistributeUpgradePkg) Serialize() []byte {
 
 func ParseDistributeUpgrade(d *Carrier.Distribute) (string, *DistributeUpgradePkg) {
 	return d.Upgrade.Imei, &DistributeUpgradePkg{
-		Imei:   d.Upgrade.Imei,
-		Serial: d.Upgrade.Serial,
-		Ip:     d.Upgrade.Ip,
-		Port:   d.Upgrade.Port,
-		User:   d.Upgrade.User,
-		Passwd: d.Upgrade.Passwd,
+		Imei:     d.Upgrade.Imei,
+		Serial:   d.Upgrade.Serial,
+		Ip:       d.Upgrade.Ip,
+		Port:     d.Upgrade.Port,
+		User:     d.Upgrade.User,
+		Passwd:   d.Upgrade.Passwd,
+		FileName: d.Upgrade.FileName,
 	}
 }

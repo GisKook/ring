@@ -5,13 +5,16 @@ message ReportLogin {
 	// imei
 	string imei        = 1;
 
+	// 设备IMSI
+	string imsi        = 2;
+
 	// 设备类型
-	string device_type = 2;
+	string device_type = 3;
 
 	// 协议版本
-	string protocol    = 3;
+	string protocol    = 4;
 
-    // 时间
+	// 时间
 	// time 格式为YYMMDD-HHMMSS
-    string time        = 4;
+	string time        = 5;
 }
