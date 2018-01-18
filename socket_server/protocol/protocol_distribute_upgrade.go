@@ -41,6 +41,6 @@ func ParseDistributeUpgrade(d *Carrier.Distribute) (string, *DistributeUpgradePk
 		Port:     d.Upgrade.Port,
 		User:     d.Upgrade.User,
 		Passwd:   d.Upgrade.Passwd,
-		FileName: d.Upgrade.FileName,
+		FileName: d.Upgrade.Filename,
 	}
 }

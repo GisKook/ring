@@ -2,11 +2,12 @@
 	"AppID":"ring",
 	"UUID":"ring_das1",
 	"Nsq":{
-		"Addr":"192.168.2.67:4150",
+		"Addr":"192.168.2.156:4150",
 		"ProducerCount":3,
-		"TopicPManage":"ring_dcs",
-		"TopicPControl":"ring_dcs",
-		"TopicPLocation":"ring_dcs",
+		"TopicPManage":"das2dcs",
+		"TopicPControl":"das2dcs",
+		"TopicPLocation":"das2dcs",
+		"TopicPLocationParser":"das2dcs_locationanalysis",
 		"TopicConsumer":{
 			"Topic":"ring_das1",
 			"Channel":"das1_ch",
@@ -19,7 +20,7 @@
 		}
 	},
 	"TcpServer":{
-		"BindPort":"8877",
+		"BindPort":"8876",
 		"ReadLimit":300,
 		"WriteLimit":300,
 		"ConnTimeout":10,

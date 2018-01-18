@@ -2,6 +2,7 @@ package protocol
 
 import (
 	"encoding/base64"
+	iconv "github.com/djimenez/iconv-go"
 	"github.com/giskook/ring/pb/common"
 )
 
@@ -15,7 +16,8 @@ func (d *DistributeMessagePkg) Serialize() []byte {
 	cmd := write_header(PROTOCOL_DISTRIBUTE_MESSAGE, d.Imei)
 	cmd += d.Serial
 	cmd += PROTOCOL_SEP
-	cmd += base64.StdEncoding.EncodeToString([]byte(d.Message))
+	msg, _ := iconv.ConvertString(d.Message, "UTF-8", "GB18030")
+	cmd += base64.StdEncoding.EncodeToString([]byte(msg))
 	cmd += PROTOCOL_END_FLAG
 
 	return []byte(cmd)

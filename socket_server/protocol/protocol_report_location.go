@@ -148,7 +148,7 @@ func ParseReportLocation(p []string, h *base.Header, from4gps string, from4lbs s
 		for _, v := range values {
 			vv := strings.Split(v, LOCATION_WIFI_SUB_SEP)
 			r.WifiInfo = append(r.WifiInfo, &Wifi{
-				Mac:     vv[0],
+				Mac:     strings.Replace(vv[0], "^", ":", -1),
 				Singnal: vv[1],
 			})
 		}

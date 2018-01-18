@@ -11,7 +11,7 @@ type DistributeSrvsetPkg struct {
 }
 
 func (d *DistributeSrvsetPkg) Serialize() []byte {
-	cmd := write_header(PROTOCOL_DISTRIBUTE_CTL, d.Imei)
+	cmd := write_header(PROTOCOL_DISTRIBUTE_SRVSET, d.Imei)
 	cmd += d.Serial
 	cmd += PROTOCOL_SEP
 	cmd += d.Srvset

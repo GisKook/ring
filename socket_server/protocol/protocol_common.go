@@ -80,6 +80,7 @@ func CheckProtocol(buffer *bytes.Buffer) (Protocol, []string) {
 			return PROTOCOL_HALF_PACK, nil
 		} else {
 			buf, _ := buffer.ReadString('\n')
+			buf = buf[0 : len(buf)-2]
 			values = strings.Split(buf, PROTOCOL_SEP)
 			return PROTOCOL[values[1]], values
 		}

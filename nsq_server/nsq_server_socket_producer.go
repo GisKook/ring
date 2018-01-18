@@ -4,6 +4,7 @@ import (
 	"github.com/bitly/go-nsq"
 	"github.com/giskook/ring/base"
 	"github.com/giskook/ring/conf"
+	"log"
 )
 
 type nsq_server_socket_p struct {
@@ -30,6 +31,7 @@ func (n *nsq_server_socket_p) stop() {
 }
 
 func (n *nsq_server_socket_p) send(topic string, data []byte) {
+	log.Printf("[NSQ OUT] topic %s value %s\n", topic, string(data))
 	n.p.PublishAsync(topic, data, nil)
 }
 

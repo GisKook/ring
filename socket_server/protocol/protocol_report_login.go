@@ -44,6 +44,6 @@ func ParseReportLogin(p []string, h *base.Header) *ReportLoginPkg {
 		Imsi:       p[3],
 		DeviceType: p[4],
 		Protocol:   p[5],
-		Time:       time.Now().Fromat("060102-150405"),
+		Time:       time.Now().Format("060102-150405"),
 	}
 }

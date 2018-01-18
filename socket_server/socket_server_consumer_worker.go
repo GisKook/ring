@@ -14,7 +14,7 @@ func (ss *SocketServer) consumer_lbs(l []byte) {
 	err := proto.Unmarshal(l, lbs)
 	log.Printf("<IN NSQ LBS> %s \n", l)
 	if err != nil {
-		log.Println("<ERR> %x unmarshal error\n", l)
+		log.Printf("<ERR> %s unmarshal error\n", l)
 	} else {
 		header := &base.Header{
 			AppID: ss.conf.AppID,
@@ -22,12 +22,13 @@ func (ss *SocketServer) consumer_lbs(l []byte) {
 			To:    ss.conf.Nsq.TopicPLocation,
 		}
 		imei, d := protocol.ParsedDistributeLocationParsed(lbs, header)
-		if d.ParsedResult == "0" {
-			ss.SocketIn <- &base.SocketData{
-				Header: header,
-				Data:   d.SerializeToUpper(),
-			}
-		}
+		// no need to send to upper any more
+		//		if d.ParsedResult == "0" {
+		//			ss.SocketIn <- &base.SocketData{
+		//				Header: header,
+		//				Data:   d.SerializeToUpper(),
+		//			}
+		//		}
 		ss.Send(imei, d)
 	}
 }
@@ -47,7 +48,7 @@ func (ss *SocketServer) consumer_worker() {
 				err := proto.Unmarshal(p, distribute)
 				log.Printf("<IN NSQ> %s \n", p)
 				if err != nil {
-					log.Println("<ERR> %x unmarshal error\n", p)
+					log.Println("<ERR> %s unmarshal error\n", p)
 				} else {
 					var err error
 					switch distribute.Protocol {
