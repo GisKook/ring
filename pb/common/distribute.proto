@@ -13,6 +13,7 @@ import "distribute_lowpset.proto";
 import "distribute_ctl.proto";
 import "distribute_srvset.proto";
 import "distribute_upgrade.proto";
+import "distribute_ack.proto";
 
 message Distribute{ 
 	Header header = 1;
@@ -29,6 +30,7 @@ message Distribute{
 		CTL             = 9;
 		SRVSET          = 10;
 		UPGRADE         = 11;
+		ACK             = 12;
 	}
 	Protocol protocol                    = 2;
 	DistributeLogRt logrt                = 3;
@@ -42,4 +44,5 @@ message Distribute{
 	DistributeCtl ctl                    = 11;
 	DistributeSrvset srvset              = 12;
 	DistributeUpgrade upgrade            = 13;
+	DistributeAck ack                    = 14;
 }

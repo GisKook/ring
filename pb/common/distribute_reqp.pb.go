@@ -25,7 +25,7 @@ type DistributeReqp struct {
 func (m *DistributeReqp) Reset()                    { *m = DistributeReqp{} }
 func (m *DistributeReqp) String() string            { return proto.CompactTextString(m) }
 func (*DistributeReqp) ProtoMessage()               {}
-func (*DistributeReqp) Descriptor() ([]byte, []int) { return fileDescriptor9, []int{0} }
+func (*DistributeReqp) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0} }
 
 func (m *DistributeReqp) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*DistributeReqp)(nil), "Carrier.DistributeReqp")
 }
 
-func init() { proto.RegisterFile("distribute_reqp.proto", fileDescriptor9) }
+func init() { proto.RegisterFile("distribute_reqp.proto", fileDescriptor10) }
 
-var fileDescriptor9 = []byte{
+var fileDescriptor10 = []byte{
 	// 111 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x4d, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0x2f, 0x4a, 0x2d, 0x2c, 0xd0, 0x2b, 0x28, 0xca, 0x2f,

@@ -26,7 +26,7 @@ type DistributeCross struct {
 func (m *DistributeCross) Reset()                    { *m = DistributeCross{} }
 func (m *DistributeCross) String() string            { return proto.CompactTextString(m) }
 func (*DistributeCross) ProtoMessage()               {}
-func (*DistributeCross) Descriptor() ([]byte, []int) { return fileDescriptor1, []int{0} }
+func (*DistributeCross) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
 
 func (m *DistributeCross) GetImei() string {
 	if m != nil {
@@ -53,9 +53,9 @@ func init() {
 	proto.RegisterType((*DistributeCross)(nil), "Carrier.DistributeCross")
 }
 
-func init() { proto.RegisterFile("distribute_cross.proto", fileDescriptor1) }
+func init() { proto.RegisterFile("distribute_cross.proto", fileDescriptor2) }
 
-var fileDescriptor1 = []byte{
+var fileDescriptor2 = []byte{
 	// 109 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x4b, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0x4f, 0x2e, 0xca, 0x2f, 0x2e, 0xd6, 0x2b, 0x28, 0xca,

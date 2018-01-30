@@ -25,7 +25,7 @@ type DistributeLowpset struct {
 func (m *DistributeLowpset) Reset()                    { *m = DistributeLowpset{} }
 func (m *DistributeLowpset) String() string            { return proto.CompactTextString(m) }
 func (*DistributeLowpset) ProtoMessage()               {}
-func (*DistributeLowpset) Descriptor() ([]byte, []int) { return fileDescriptor6, []int{0} }
+func (*DistributeLowpset) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
 
 func (m *DistributeLowpset) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*DistributeLowpset)(nil), "Carrier.DistributeLowpset")
 }
 
-func init() { proto.RegisterFile("distribute_lowpset.proto", fileDescriptor6) }
+func init() { proto.RegisterFile("distribute_lowpset.proto", fileDescriptor7) }
 
-var fileDescriptor6 = []byte{
+var fileDescriptor7 = []byte{
 	// 111 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x48, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0xcf, 0xc9, 0x2f, 0x2f, 0x28, 0x4e, 0x2d, 0xd1, 0x2b,

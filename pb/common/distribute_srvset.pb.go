@@ -25,7 +25,7 @@ type DistributeSrvset struct {
 func (m *DistributeSrvset) Reset()                    { *m = DistributeSrvset{} }
 func (m *DistributeSrvset) String() string            { return proto.CompactTextString(m) }
 func (*DistributeSrvset) ProtoMessage()               {}
-func (*DistributeSrvset) Descriptor() ([]byte, []int) { return fileDescriptor10, []int{0} }
+func (*DistributeSrvset) Descriptor() ([]byte, []int) { return fileDescriptor11, []int{0} }
 
 func (m *DistributeSrvset) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*DistributeSrvset)(nil), "Carrier.DistributeSrvset")
 }
 
-func init() { proto.RegisterFile("distribute_srvset.proto", fileDescriptor10) }
+func init() { proto.RegisterFile("distribute_srvset.proto", fileDescriptor11) }
 
-var fileDescriptor10 = []byte{
+var fileDescriptor11 = []byte{
 	// 107 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x4f, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0x2f, 0x2e, 0x2a, 0x2b, 0x4e, 0x2d, 0xd1, 0x2b, 0x28,

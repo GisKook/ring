@@ -13,6 +13,8 @@ const (
 	LOCATION_TYPE_CELL string = "1"
 	LOCATION_TYPE_WIFI string = "2"
 
+	LOCATION_POS_REASON_REPORT_OLD_DATA string = "2"
+
 	LOCATION_GPS_SEP       string = ","
 	LOCATION_CELL_MAIN_SEP string = "^"
 	LOCATION_CELL_SUB_SEP  string = ","

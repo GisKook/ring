@@ -39,7 +39,7 @@ type ReportAck struct {
 func (m *ReportAck) Reset()                    { *m = ReportAck{} }
 func (m *ReportAck) String() string            { return proto.CompactTextString(m) }
 func (*ReportAck) ProtoMessage()               {}
-func (*ReportAck) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
+func (*ReportAck) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
 
 func (m *ReportAck) GetImei() string {
 	if m != nil {
@@ -73,9 +73,9 @@ func init() {
 	proto.RegisterType((*ReportAck)(nil), "Carrier.ReportAck")
 }
 
-func init() { proto.RegisterFile("report_ack.proto", fileDescriptor13) }
+func init() { proto.RegisterFile("report_ack.proto", fileDescriptor14) }
 
-var fileDescriptor13 = []byte{
+var fileDescriptor14 = []byte{
 	// 118 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x28, 0x4a, 0x2d, 0xc8,
 	0x2f, 0x2a, 0x89, 0x4f, 0x4c, 0xce, 0xd6, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x77, 0x4e,

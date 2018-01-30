@@ -23,7 +23,7 @@ type DistributeLocation struct {
 func (m *DistributeLocation) Reset()                    { *m = DistributeLocation{} }
 func (m *DistributeLocation) String() string            { return proto.CompactTextString(m) }
 func (*DistributeLocation) ProtoMessage()               {}
-func (*DistributeLocation) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
+func (*DistributeLocation) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *DistributeLocation) GetExtra() []byte {
 	if m != nil {
@@ -43,9 +43,9 @@ func init() {
 	proto.RegisterType((*DistributeLocation)(nil), "Carrier.DistributeLocation")
 }
 
-func init() { proto.RegisterFile("distribute_location.proto", fileDescriptor4) }
+func init() { proto.RegisterFile("distribute_location.proto", fileDescriptor5) }
 
-var fileDescriptor4 = []byte{
+var fileDescriptor5 = []byte{
 	// 112 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x4c, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0xcf, 0xc9, 0x4f, 0x4e, 0x2c, 0xc9, 0xcc, 0xcf, 0xd3,

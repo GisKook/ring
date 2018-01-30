@@ -25,7 +25,7 @@ type DistributeFreset struct {
 func (m *DistributeFreset) Reset()                    { *m = DistributeFreset{} }
 func (m *DistributeFreset) String() string            { return proto.CompactTextString(m) }
 func (*DistributeFreset) ProtoMessage()               {}
-func (*DistributeFreset) Descriptor() ([]byte, []int) { return fileDescriptor3, []int{0} }
+func (*DistributeFreset) Descriptor() ([]byte, []int) { return fileDescriptor4, []int{0} }
 
 func (m *DistributeFreset) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*DistributeFreset)(nil), "Carrier.DistributeFreset")
 }
 
-func init() { proto.RegisterFile("distribute_freset.proto", fileDescriptor3) }
+func init() { proto.RegisterFile("distribute_freset.proto", fileDescriptor4) }
 
-var fileDescriptor3 = []byte{
+var fileDescriptor4 = []byte{
 	// 117 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x4f, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0x4f, 0x2b, 0x4a, 0x2d, 0x4e, 0x2d, 0xd1, 0x2b, 0x28,

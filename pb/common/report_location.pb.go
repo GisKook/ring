@@ -25,7 +25,7 @@ type ReportLocation struct {
 func (m *ReportLocation) Reset()                    { *m = ReportLocation{} }
 func (m *ReportLocation) String() string            { return proto.CompactTextString(m) }
 func (*ReportLocation) ProtoMessage()               {}
-func (*ReportLocation) Descriptor() ([]byte, []int) { return fileDescriptor14, []int{0} }
+func (*ReportLocation) Descriptor() ([]byte, []int) { return fileDescriptor15, []int{0} }
 
 func (m *ReportLocation) GetExtra() []byte {
 	if m != nil {
@@ -59,9 +59,9 @@ func init() {
 	proto.RegisterType((*ReportLocation)(nil), "Carrier.ReportLocation")
 }
 
-func init() { proto.RegisterFile("report_location.proto", fileDescriptor14) }
+func init() { proto.RegisterFile("report_location.proto", fileDescriptor15) }
 
-var fileDescriptor14 = []byte{
+var fileDescriptor15 = []byte{
 	// 129 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x12, 0x2d, 0x4a, 0x2d, 0xc8,
 	0x2f, 0x2a, 0x89, 0xcf, 0xc9, 0x4f, 0x4e, 0x2c, 0xc9, 0xcc, 0xcf, 0xd3, 0x2b, 0x28, 0xca, 0x2f,

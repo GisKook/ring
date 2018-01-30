@@ -7,6 +7,7 @@ Package Carrier is a generated protocol buffer package.
 
 It is generated from these files:
 	base.proto
+	distribute_ack.proto
 	distribute_cross.proto
 	distribute_ctl.proto
 	distribute_freset.proto
@@ -30,6 +31,7 @@ It is generated from these files:
 It has these top-level messages:
 	Header
 	LocationExtra
+	DistributeAck
 	DistributeCross
 	DistributeCtl
 	DistributeFreset

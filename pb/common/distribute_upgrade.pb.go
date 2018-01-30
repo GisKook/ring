@@ -28,7 +28,7 @@ type DistributeUpgrade struct {
 func (m *DistributeUpgrade) Reset()                    { *m = DistributeUpgrade{} }
 func (m *DistributeUpgrade) String() string            { return proto.CompactTextString(m) }
 func (*DistributeUpgrade) ProtoMessage()               {}
-func (*DistributeUpgrade) Descriptor() ([]byte, []int) { return fileDescriptor12, []int{0} }
+func (*DistributeUpgrade) Descriptor() ([]byte, []int) { return fileDescriptor13, []int{0} }
 
 func (m *DistributeUpgrade) GetImei() string {
 	if m != nil {
@@ -83,9 +83,9 @@ func init() {
 	proto.RegisterType((*DistributeUpgrade)(nil), "Carrier.DistributeUpgrade")
 }
 
-func init() { proto.RegisterFile("distribute_upgrade.proto", fileDescriptor12) }
+func init() { proto.RegisterFile("distribute_upgrade.proto", fileDescriptor13) }
 
-var fileDescriptor12 = []byte{
+var fileDescriptor13 = []byte{
 	// 153 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0x3c, 0x8e, 0xb1, 0xca, 0x02, 0x31,
 	0x10, 0x84, 0xb9, 0xfb, 0xf3, 0xe7, 0x74, 0x39, 0x44, 0x53, 0x6d, 0x29, 0x56, 0x56, 0x36, 0x3e,

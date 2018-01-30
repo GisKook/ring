@@ -25,7 +25,7 @@ type DistributeMessage struct {
 func (m *DistributeMessage) Reset()                    { *m = DistributeMessage{} }
 func (m *DistributeMessage) String() string            { return proto.CompactTextString(m) }
 func (*DistributeMessage) ProtoMessage()               {}
-func (*DistributeMessage) Descriptor() ([]byte, []int) { return fileDescriptor7, []int{0} }
+func (*DistributeMessage) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
 
 func (m *DistributeMessage) GetImei() string {
 	if m != nil {
@@ -52,9 +52,9 @@ func init() {
 	proto.RegisterType((*DistributeMessage)(nil), "Carrier.DistributeMessage")
 }
 
-func init() { proto.RegisterFile("distribute_message.proto", fileDescriptor7) }
+func init() { proto.RegisterFile("distribute_message.proto", fileDescriptor8) }
 
-var fileDescriptor7 = []byte{
+var fileDescriptor8 = []byte{
 	// 111 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0x92, 0x48, 0xc9, 0x2c, 0x2e,
 	0x29, 0xca, 0x4c, 0x2a, 0x2d, 0x49, 0x8d, 0xcf, 0x4d, 0x2d, 0x2e, 0x4e, 0x4c, 0x4f, 0xd5, 0x2b,

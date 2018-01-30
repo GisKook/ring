@@ -1,5 +1,9 @@
 package protocol
 
+import (
+	"github.com/giskook/ring/pb/common"
+)
+
 type DistributePackPkg struct {
 	Imei    string
 	Serial  string // sometimes the time stand for serial
@@ -22,4 +26,8 @@ func GenPackPkg(imei string, serial string, cmdtype string) (string, *Distribute
 		Serial:  serial,
 		CmdType: cmdtype,
 	}
+}
+
+func ParseDistributeAck(d *Carrier.Distribute) (string, *DistributePackPkg) {
+	return GenPackPkg(d.Ack.Imei, d.Ack.Time, d.Ack.Type.String())
 }

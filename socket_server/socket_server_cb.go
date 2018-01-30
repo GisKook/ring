@@ -32,16 +32,9 @@ func (ss *SocketServer) eh_report_location(p []string) {
 		From:  ss.conf.UUID,
 		To:    ss.conf.Nsq.TopicPLocation,
 	}
-	location := protocol.ParseReportLocation(p, header, ss.conf.UUID, ss.conf.Nsq.TopicLbsConsumer.Topic)
-	if location.PosType != protocol.LOCATION_TYPE_GPS {
-		header.From = ss.conf.Nsq.TopicLbsConsumer.Topic
-		header.To = ss.conf.Nsq.TopicPLocationParser
 
-		ss.SocketIn <- &base.SocketData{
-			Header: header,
-			Data:   location.SerializeLbs(),
-		}
-	} else {
+	location := protocol.ParseReportLocation(p, header, ss.conf.UUID, ss.conf.Nsq.TopicLbsConsumer.Topic)
+	report_loaction_direct := func() {
 		l := &protocol.DistributeLocationParsedPkg{
 			Imei:         location.Imei,
 			Time:         location.Time,
@@ -52,6 +45,21 @@ func (ss *SocketServer) eh_report_location(p []string) {
 		ss.SocketIn <- &base.SocketData{
 			Header: header,
 			Data:   location.Serialize(),
+		}
+	}
+	if location.PosReason == protocol.LOCATION_POS_REASON_REPORT_OLD_DATA {
+		report_loaction_direct()
+	} else {
+		if location.PosType != protocol.LOCATION_TYPE_GPS {
+			header.From = ss.conf.Nsq.TopicLbsConsumer.Topic
+			header.To = ss.conf.Nsq.TopicPLocationParser
+
+			ss.SocketIn <- &base.SocketData{
+				Header: header,
+				Data:   location.SerializeLbs(),
+			}
+		} else {
+			report_loaction_direct()
 		}
 	}
 

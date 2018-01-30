@@ -72,6 +72,8 @@ func (ss *SocketServer) consumer_worker() {
 						err = ss.Send(protocol.ParseDistributeSrvset(distribute))
 					case Carrier.Distribute_UPGRADE:
 						err = ss.Send(protocol.ParseDistributeUpgrade(distribute))
+					case Carrier.Distribute_ACK:
+						err = ss.Send(protocol.ParseDistributeAck(distribute))
 					}
 
 					if err != nil {
