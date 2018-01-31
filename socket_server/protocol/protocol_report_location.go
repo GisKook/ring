@@ -136,7 +136,7 @@ func ParseReportLocation(p []string, h *base.Header, from4gps string, from4lbs s
 		PosType:       p[8],
 	}
 	r.Header.From = from4lbs
-	rest := p[9][0 : len(p[9])-2]
+	rest := p[9][0:len(p[9])]
 	if p[8] == LOCATION_TYPE_GPS {
 		values := strings.Split(rest, LOCATION_GPS_SEP)
 		r.Header.From = from4gps

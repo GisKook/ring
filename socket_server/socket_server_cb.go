@@ -24,7 +24,7 @@ func (ss *SocketServer) eh_report_login(p []string, c *Connection) {
 
 func (ss *SocketServer) eh_report_location(p []string) {
 	// because of the 'TPOSUP' protocol trigger two different way
-	// so if 'TPOSUP' is GPS go to the upper server directly
+	// so if 'TPOSUP' is GPS go to the upper server gpsly
 	// if 'TPOSUP' is wifi or cell infos the protocol goto location parser server
 	// but in the protobuf the header's finnal dst will always be upper server
 	header := &base.Header{
@@ -34,7 +34,7 @@ func (ss *SocketServer) eh_report_location(p []string) {
 	}
 
 	location := protocol.ParseReportLocation(p, header, ss.conf.UUID, ss.conf.Nsq.TopicLbsConsumer.Topic)
-	report_loaction_direct := func() {
+	feedback_direct := func() {
 		l := &protocol.DistributeLocationParsedPkg{
 			Imei:         location.Imei,
 			Time:         location.Time,
@@ -42,24 +42,35 @@ func (ss *SocketServer) eh_report_location(p []string) {
 			ParsedResult: "",
 		}
 		ss.Send(location.Imei, l)
+	}
+	report_loaction_gps := func() {
 		ss.SocketIn <- &base.SocketData{
 			Header: header,
 			Data:   location.Serialize(),
 		}
 	}
+	report_location_lbs := func() {
+		header.From = ss.conf.Nsq.TopicLbsConsumer.Topic
+		header.To = ss.conf.Nsq.TopicPLocationParser
+
+		ss.SocketIn <- &base.SocketData{
+			Header: header,
+			Data:   location.SerializeLbs(),
+		}
+	}
 	if location.PosReason == protocol.LOCATION_POS_REASON_REPORT_OLD_DATA {
-		report_loaction_direct()
+		if location.PosType != protocol.LOCATION_TYPE_GPS {
+			report_location_lbs()
+		} else {
+			report_loaction_gps()
+		}
+		feedback_direct()
 	} else {
 		if location.PosType != protocol.LOCATION_TYPE_GPS {
-			header.From = ss.conf.Nsq.TopicLbsConsumer.Topic
-			header.To = ss.conf.Nsq.TopicPLocationParser
-
-			ss.SocketIn <- &base.SocketData{
-				Header: header,
-				Data:   location.SerializeLbs(),
-			}
+			report_location_lbs()
 		} else {
-			report_loaction_direct()
+			report_loaction_gps()
+			feedback_direct()
 		}
 	}
 
