@@ -26,6 +26,7 @@ func (p *ReportLoginPkg) Serialize() []byte {
 		Protocol: Carrier.Report_LOGIN,
 		Login: &Carrier.ReportLogin{
 			Imei:       p.Imei,
+			Imsi:       p.Imsi,
 			DeviceType: p.DeviceType,
 			Protocol:   p.Protocol,
 			Time:       p.Time,
