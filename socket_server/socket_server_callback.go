@@ -22,7 +22,7 @@ func (ss *SocketServer) OnConnect(c *gotcp.Conn) bool {
 
 func (ss *SocketServer) OnClose(c *gotcp.Conn) {
 	connection := c.GetExtraData().(*Connection)
-	ss.cm.Del(connection.ID)
+	ss.cm.Del(connection)
 	connection.Close()
 	log.Printf("<DIS> %x\n", c.GetRawConn())
 	//debug.PrintStack()

@@ -48,6 +48,10 @@ func (c *Connection) Close() {
 	c.ticker.Stop()
 }
 
+func (c *Connection) Equal(cc *Connection) bool {
+	return c.c == cc.c
+}
+
 func (c *Connection) UpdateReadFlag() {
 	atomic.StoreInt64(&c.read_timestamp, time.Now().Unix())
 }

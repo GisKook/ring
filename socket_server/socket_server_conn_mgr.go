@@ -33,9 +33,10 @@ func (cm *ConnMgr) Get(id uint64) *Connection {
 	return nil
 }
 
-func (cm *ConnMgr) Del(id uint64) {
-	cm.mutex.Lock()
-	defer cm.mutex.Unlock()
-
-	delete(cm.connections, id)
+func (cm *ConnMgr) Del(c *Connection) {
+	if cm.Get(c.ID).Equal(c) {
+		cm.mutex.Lock()
+		delete(cm.connections, c.ID)
+		cm.mutex.Unlock()
+	}
 }
