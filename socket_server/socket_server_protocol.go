@@ -23,10 +23,12 @@ func (ss *SocketServer) ReadPacket(conn *net.TCPConn) (gotcp.Packet, error) {
 	data := make([]byte, 1024)
 	length, err := conn.Read(data)
 	if err != nil {
+		log.Println("<ERR> %s\n", err)
 		return nil, err
 	}
 
 	if length == 0 {
+		log.Println("<ERR> peer error\n")
 		return nil, ErrPeerClosed
 	}
 	log.Printf("<IN>  %x  %s\n", conn, string(data[0:length]))

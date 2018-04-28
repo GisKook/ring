@@ -20,6 +20,7 @@ type SocketServer struct {
 	SocketLbsOut chan []byte
 	exit         chan struct{}
 	wait_exit    *sync.WaitGroup
+	conn_uuid    uint32
 }
 
 func NewSocketServer(conf *conf.Conf) *SocketServer {
@@ -65,6 +66,7 @@ func (ss *SocketServer) Send(imei string, p gotcp.Packet) error {
 	id, _ := strconv.ParseUint(imei, 10, 64)
 	c := ss.cm.Get(id)
 	if c != nil {
+		c.SetWriteDeadline()
 		return c.Send(p)
 	}
 

@@ -5,16 +5,18 @@ import (
 	"github.com/giskook/ring/socket_server/protocol"
 	"log"
 	//"runtime/debug"
+	"sync/atomic"
 )
 
 func (ss *SocketServer) OnConnect(c *gotcp.Conn) bool {
 	connection := NewConnection(c, &ConnConf{
 		read_limit:  ss.conf.TcpServer.ReadLimit,
 		write_limit: ss.conf.TcpServer.WriteLimit,
+		uuid:        atomic.AddUint32(&ss.conn_uuid, 1),
 	})
 
 	c.PutExtraData(connection)
-	go connection.Check()
+	//go connection.Check()
 	log.Printf("<CNT> %x \n", c.GetRawConn())
 
 	return true
@@ -30,6 +32,7 @@ func (ss *SocketServer) OnClose(c *gotcp.Conn) {
 
 func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 	connection := c.GetExtraData().(*Connection)
+	connection.SetReadDeadline()
 	connection.RecvBuffer.Write(p.Serialize())
 	for {
 		protocol_id, values := protocol.CheckProtocol(connection.RecvBuffer)

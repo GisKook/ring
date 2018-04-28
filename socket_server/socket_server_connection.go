@@ -3,7 +3,6 @@ package socket_server
 import (
 	"bytes"
 	"github.com/gansidui/gotcp"
-	"sync/atomic"
 	"time"
 )
 
@@ -15,6 +14,7 @@ const (
 type ConnConf struct {
 	read_limit  int
 	write_limit int
+	uuid        uint32
 }
 
 type Connection struct {
@@ -31,6 +31,9 @@ type Connection struct {
 }
 
 func NewConnection(c *gotcp.Conn, conf *ConnConf) *Connection {
+	tcp_c := c.GetRawConn()
+	tcp_c.SetReadDeadline(time.Now().Add(time.Duration(conf.read_limit) * time.Second))
+	tcp_c.SetWriteDeadline(time.Now().Add(time.Duration(conf.write_limit) * time.Second))
 	return &Connection{
 		conf:            conf,
 		c:               c,
@@ -42,6 +45,14 @@ func NewConnection(c *gotcp.Conn, conf *ConnConf) *Connection {
 	}
 }
 
+func (c *Connection) SetReadDeadline() {
+	c.c.GetRawConn().SetReadDeadline(time.Now().Add(time.Duration(c.conf.read_limit) * time.Second))
+}
+
+func (c *Connection) SetWriteDeadline() {
+	c.c.GetRawConn().SetWriteDeadline(time.Now().Add(time.Duration(c.conf.write_limit) * time.Second))
+}
+
 func (c *Connection) Close() {
 	close(c.exit)
 	c.RecvBuffer.Reset()
@@ -49,36 +60,9 @@ func (c *Connection) Close() {
 }
 
 func (c *Connection) Equal(cc *Connection) bool {
-	return c.c == cc.c
-}
-
-func (c *Connection) UpdateReadFlag() {
-	atomic.StoreInt64(&c.read_timestamp, time.Now().Unix())
-}
-
-func (c *Connection) UpdateWriteFlag() {
-	atomic.StoreInt64(&c.write_timestamp, time.Now().Unix())
+	return c.conf.uuid == cc.conf.uuid
 }
 
 func (c *Connection) Send(p gotcp.Packet) error {
 	return c.c.AsyncWritePacket(p, 0)
-}
-
-func (c *Connection) Check() {
-	defer func() {
-		c.c.Close()
-	}()
-	for {
-		select {
-		case <-c.exit:
-			return
-		case <-c.ticker.C:
-			now := time.Now().Unix()
-			if now-c.read_timestamp > int64(c.conf.read_limit) ||
-				now-c.write_timestamp > int64(c.conf.write_limit) {
-
-				return
-			}
-		}
-	}
 }

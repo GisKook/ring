@@ -14,4 +14,10 @@ message DistributeLogRt{
 	// 1 登录成功 
 	// 2 非法用户
 	string result = 3;
+	
+
+	// 默认参数 (terminal version > 106)
+	// key 的可选值 : LOC_FRE  <- 定位频度 单位 分
+	//              : LOW_WRN  <- 低电告警
+	map<string, string> settings = 4;
 }
