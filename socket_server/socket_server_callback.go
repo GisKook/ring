@@ -36,6 +36,10 @@ func (ss *SocketServer) OnMessage(c *gotcp.Conn, p gotcp.Packet) bool {
 	connection.RecvBuffer.Write(p.Serialize())
 	for {
 		protocol_id, values := protocol.CheckProtocol(connection.RecvBuffer)
+		if protocol_id != protocol.PROTOCOL_REPORT_LOGIN && connection != nil && connection.status != USER_STATUS_NORMAL {
+			log.Printf("<SWALLOW> %d ", connection.ID)
+			return true
+		}
 		switch protocol_id {
 		case protocol.PROTOCOL_HALF_PACK:
 			return true

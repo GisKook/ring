@@ -7,8 +7,9 @@ import (
 )
 
 const (
-	CONNECTION_STATUS_INIT   uint8 = 0
-	CONNECTION_STATUS_NORMAL uint8 = 1
+	USER_STATUS_INIT    uint8 = 0
+	USER_STATUS_NORMAL  uint8 = 1
+	USER_STATUS_ILLEGAL uint8 = 2
 )
 
 type ConnConf struct {

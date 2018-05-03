@@ -25,8 +25,8 @@ type DistributeLogRt struct {
 	// 2 非法用户
 	Result string `protobuf:"bytes,3,opt,name=result" json:"result,omitempty"`
 	// 默认参数 (terminal version > 106)
-	// key 的可选值 : LOC_FRE  <- 定位频度 单位 分
-	//              : LOW_WRN  <- 低电告警
+	// key 的可选值 : 0 <- 定位频度 单位 分
+	//              : 1 <- 低电告警
 	Settings map[string]string `protobuf:"bytes,4,rep,name=settings" json:"settings,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
 }
 

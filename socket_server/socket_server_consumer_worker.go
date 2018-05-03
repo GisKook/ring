@@ -53,7 +53,10 @@ func (ss *SocketServer) consumer_worker() {
 					var err error
 					switch distribute.Protocol {
 					case Carrier.Distribute_LOGRT:
-						err = ss.Send(protocol.ParseDistributeLogRt(distribute))
+						imei, p := protocol.ParseDistributeLogRt(distribute)
+						c := ss.SetStatus(imei, p.Result)
+						c.Send(p)
+						//err = ss.Send(protocol.ParseDistributeLogRt(distribute))
 					case Carrier.Distribute_REQP:
 						err = ss.Send(protocol.ParseDistributeReqp(distribute))
 					case Carrier.Distribute_TEARCHK:

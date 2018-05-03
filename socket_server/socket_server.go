@@ -65,7 +65,7 @@ func (ss *SocketServer) Start() error {
 func (ss *SocketServer) Send(imei string, p gotcp.Packet) error {
 	id, _ := strconv.ParseUint(imei, 10, 64)
 	c := ss.cm.Get(id)
-	if c != nil {
+	if c != nil && c.status == USER_STATUS_NORMAL {
 		c.SetWriteDeadline()
 		return c.Send(p)
 	}
@@ -82,4 +82,15 @@ func (ss *SocketServer) Stop() {
 	close(ss.SocketIn)
 
 	ss.srv.Stop()
+}
+
+func (ss *SocketServer) SetStatus(imei, status string) *Connection {
+	id, _ := strconv.ParseUint(imei, 10, 64)
+	s, _ := strconv.ParseUint(status, 10, 8)
+	c := ss.cm.Get(id)
+	if c != nil {
+		c.status = uint8(s)
+	}
+
+	return c
 }

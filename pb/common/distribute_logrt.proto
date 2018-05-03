@@ -17,7 +17,7 @@ message DistributeLogRt{
 	
 
 	// 默认参数 (terminal version > 106)
-	// key 的可选值 : LOC_FRE  <- 定位频度 单位 分
-	//              : LOW_WRN  <- 低电告警
+	// key 的可选值 : 0 <- 定位频度 单位 分
+	//              : 1 <- 低电告警
 	map<string, string> settings = 4;
 }
