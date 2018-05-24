@@ -55,7 +55,10 @@ func (ss *SocketServer) consumer_worker() {
 					case Carrier.Distribute_LOGRT:
 						imei, p := protocol.ParseDistributeLogRt(distribute)
 						c := ss.SetStatus(imei, p.Result)
-						c.Send(p)
+						err := c.Send(p)
+						if err != nil {
+							log.Printf("<ERR> %s %s\n", imei, err.Error())
+						}
 						//err = ss.Send(protocol.ParseDistributeLogRt(distribute))
 					case Carrier.Distribute_REQP:
 						err = ss.Send(protocol.ParseDistributeReqp(distribute))

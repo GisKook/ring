@@ -3,6 +3,7 @@ package socket_server
 import (
 	"bytes"
 	"github.com/gansidui/gotcp"
+	"github.com/giskook/ring/base"
 	"time"
 )
 
@@ -65,5 +66,9 @@ func (c *Connection) Equal(cc *Connection) bool {
 }
 
 func (c *Connection) Send(p gotcp.Packet) error {
-	return c.c.AsyncWritePacket(p, 0)
+	if c != nil && c.c != nil {
+		return c.c.AsyncWritePacket(p, 0)
+	}
+
+	return base.ErrSocketAlreadyNotExist
 }

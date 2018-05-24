@@ -2,7 +2,6 @@ package protocol
 
 import (
 	"github.com/giskook/ring/pb/common"
-	"strconv"
 )
 
 type DistributeLogRtPkg struct {
@@ -18,13 +17,13 @@ func (d *DistributeLogRtPkg) Serialize() []byte {
 	cmd += PROTOCOL_SEP
 
 	setting_len := len(d.Settings)
-	var cur_inx int
+	cur_inx := 0
 	for k, v := range d.Settings {
 		cmd += k + "," + v
-		cur_inx, _ = strconv.Atoi(k)
 		if cur_inx < setting_len-1 {
 			cmd += ";"
 		}
+		cur_inx++
 	}
 	cmd += PROTOCOL_SEP
 	cmd += d.Result
